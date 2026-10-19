@@ -1,0 +1,26 @@
+# Dependências
+node_modules/
+package-lock.json
+
+# Ferramentas e agentes locais
+.agents/
+.agentes/
+.playwright/
+.playwright-cli/
+
+# Logs e arquivos temporários
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ambiente e IDEs
+.env
+.env.local
+.vscode/
+.idea/

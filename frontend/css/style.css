@@ -1,0 +1,1006 @@
+/* ==========================================================================
+   CAÇA-PALAVRAS TURMA DA MÔNICA - DESIGN SYSTEM & ESTILOS
+   Saquarema Prefeitura & A.G Dev Solution
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --comic-red: #e52525;
+  --comic-red-dark: #b81414;
+  --comic-blue: #0077c8;
+  --comic-blue-dark: #005a99;
+  --comic-yellow: #ffcc00;
+  --comic-yellow-dark: #e6b800;
+  --comic-green: #28a745;
+  --comic-green-dark: #1e7e34;
+  --comic-orange: #ff6f00;
+
+  --bg-dark: #0c1a2c;
+  --bg-panel: #ffffff;
+  --bg-comic-grid: #134475;
+
+  --text-primary: #1e293b;
+  --text-muted: #64748b;
+  --text-white: #ffffff;
+
+  --border-comic: 3px solid #101c2c;
+  --border-radius-lg: 18px;
+  --border-radius-md: 12px;
+  --border-radius-sm: 8px;
+
+  --shadow-comic: 4px 4px 0px #101c2c;
+  --shadow-comic-sm: 2px 2px 0px #101c2c;
+  --shadow-comic-lg: 6px 6px 0px #101c2c;
+
+  --font-comic-title: 'Bangers', cursive, sans-serif;
+  --font-comic-body: 'Fredoka', 'Comic Neue', sans-serif;
+  --font-ui: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+body {
+  font-family: var(--font-comic-body);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ==========================================================================
+   TELA INICIAL / COVER (PÁGINA 1 DO PDF)
+   ========================================================================== */
+.cover-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(0, 168, 255, 0.25) 0%, transparent 70%),
+    linear-gradient(135deg, #0b223d 0%, #064069 50%, #032b49 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.cover-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Padrão de Grade Quadriculada (Estilo Quadrinhos do PDF) */
+.comic-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 45px 45px;
+  pointer-events: none;
+}
+
+.cover-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cover-logo-saquarema {
+  height: 100px;
+  width: auto;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+  background: #ffffff00;
+  padding: 6px 12px;
+  border-radius: var(--border-radius-sm);
+  border: 0px solid #000;
+}
+
+.cover-center {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title-tag-caca {
+  font-family: var(--font-comic-title);
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  letter-spacing: 4px;
+  color: #00d2ff;
+  text-shadow:
+    -3px -3px 0 #000,
+    3px -3px 0 #000,
+    -3px 3px 0 #000,
+    3px 3px 0 #000,
+    6px 6px 0 rgba(0, 0, 0, 0.6);
+  line-height: 0.95;
+}
+
+.title-tag-palavras {
+  font-family: var(--font-comic-title);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  letter-spacing: 5px;
+  color: #ff3344;
+  text-shadow:
+    -3px -3px 0 #000,
+    3px -3px 0 #000,
+    -3px 3px 0 #000,
+    3px 3px 0 #000,
+    6px 6px 0 rgba(0, 0, 0, 0.6);
+  line-height: 0.95;
+  margin-bottom: 0.5rem;
+}
+
+.title-tag-turma {
+  font-family: var(--font-comic-title);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #ffffff;
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 0 #000;
+  text-transform: uppercase;
+}
+
+.title-logo-monica-box {
+  background: #ffffff;
+  border: 4px solid #101c2c;
+  box-shadow: var(--shadow-comic-lg);
+  border-radius: 16px;
+  padding: 8px 32px;
+  display: inline-block;
+  margin-top: -6px;
+  transform: rotate(-2deg);
+}
+
+.title-logo-monica-text {
+  font-family: var(--font-comic-title);
+  font-size: clamp(3rem, 6vw, 4.8rem);
+  letter-spacing: 2px;
+  color: #ff002b;
+  text-shadow:
+    -2px -2px 0 #ffea00,
+    2px -2px 0 #ffea00,
+    -2px 2px 0 #ffea00,
+    2px 2px 0 #ffea00,
+    4px 4px 0 #000;
+  line-height: 1;
+}
+
+/* Configurações Iniciais da Partida */
+.cover-options {
+  background: rgba(255, 255, 255, 0.92);
+  border: var(--border-comic);
+  box-shadow: var(--shadow-comic);
+  border-radius: var(--border-radius-md);
+  padding: 1rem 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cover-option-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.cover-select {
+  font-family: var(--font-comic-body);
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--border-radius-sm);
+  border: 2px solid #101c2c;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Botão JOGAR estilo Pill do PDF */
+.btn-play-pill {
+  font-family: var(--font-comic-title);
+  font-size: 2.4rem;
+  letter-spacing: 2px;
+  color: #ff1a2e;
+  background: #ffffff;
+  border: 4px solid #101c2c;
+  padding: 10px 60px;
+  border-radius: 9999px;
+  box-shadow: 0 8px 0 #ff4b5a, var(--shadow-comic-lg);
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 1.5rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-play-pill:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 11px 0 #ff4b5a, 8px 8px 0 #101c2c;
+}
+
+.btn-play-pill:active {
+  transform: translateY(4px);
+  box-shadow: 0 4px 0 #ff4b5a, 3px 3px 0 #101c2c;
+}
+
+.cover-footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.cover-logo-agdev {
+  height: 110px;
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  background: #ffffff00;
+  padding: 4px 10px;
+  border-radius: var(--border-radius-sm);
+  border: 0px solid #000;
+}
+
+/* ==========================================================================
+   TELA PRINCIPAL DO JOGO (PÁGINA 2 DO PDF MELHORADA)
+   ========================================================================== */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(27, 117, 188, 0.2) 0%, transparent 50%),
+    linear-gradient(180deg, #091726 0%, #0d2847 100%);
+  position: relative;
+  padding-bottom: 0rem;
+}
+
+/* Barra de Navegação Superior */
+.game-navbar {
+  background: rgb(19 45 81 / 95%);
+  border-bottom: var(--border-comic);
+  padding: -0.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-logo-saquarema {
+  position: relative;
+  left: 13px;
+  height: 72px;
+  width: auto;
+}
+
+.nav-title {
+  height: 55px;
+  position: relative;
+  left: 370px;
+  font-family: var(--font-comic-title);
+  font-size: 3.6rem;
+  color: var(--comic-red);
+  letter-spacing: 1px;
+}
+
+.nav-controls {
+  position: relative;
+  left: -11px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.stat-chip {
+  background: #f1f5f9;
+  border: 2px solid #101c2c;
+  border-radius: var(--border-radius-sm);
+  padding: 5px 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: var(--shadow-comic-sm);
+}
+
+.stat-chip.timer {
+  color: var(--comic-blue);
+  background: #e0f2fe;
+}
+
+.stat-chip.score {
+  color: #b45309;
+  background: #fef3c7;
+}
+
+.btn-comic {
+  font-family: var(--font-comic-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 7px 14px;
+  border: 2px solid #101c2c;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-comic-sm);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #ffffff;
+  color: var(--text-primary);
+}
+
+.btn-comic:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 #101c2c;
+}
+
+.btn-comic:active {
+  transform: translateY(1px);
+  box-shadow: 1px 1px 0 #101c2c;
+}
+
+.btn-comic-primary {
+  background: var(--comic-yellow);
+  color: #101c2c;
+}
+
+.btn-comic-danger {
+  background: var(--comic-red);
+  color: #ffffff;
+}
+
+/* Área de Jogo em 2 Colunas */
+.game-main {
+  max-width: 1300px;
+  margin: 1.5rem auto;
+  padding: 0 1.5rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ==========================================================================
+   COLUNA ESQUERDA: O TABULEIRO DO CAÇA-PALAVRAS
+   ========================================================================== */
+.board-card {
+  background: #ffffff;
+  border: var(--border-comic);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-comic-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed #cbd5e1;
+  padding-bottom: 0.75rem;
+}
+
+.board-theme-title {
+  font-family: var(--font-comic-title);
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  color: var(--comic-blue);
+}
+
+.board-difficulty-badge {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 2px solid #101c2c;
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* O Grid de Letras */
+.grid-container {
+  display: grid;
+  gap: 4px;
+  background: #0f2c4a;
+  padding: 10px;
+  border: 3px solid #101c2c;
+  border-radius: var(--border-radius-md);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 580px;
+  aspect-ratio: 1 / 1;
+  touch-action: none;
+  /* Essencial para drag em telas touch */
+}
+
+.grid-cell {
+  background: #ffffff;
+  border-radius: 6px;
+  font-family: var(--font-comic-title);
+  font-size: clamp(1.1rem, 2.8vw, 1.7rem);
+  font-weight: 900;
+  color: #101c2c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.1s ease, transform 0.1s ease;
+  position: relative;
+  border: 1px solid #cbd5e1;
+}
+
+.grid-cell:hover {
+  background-color: #fef08a;
+}
+
+.grid-cell.selected {
+  background-color: #38bdf8 !important;
+  color: #ffffff;
+  transform: scale(0.95);
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.4);
+}
+
+.grid-cell.found {
+  background-color: #bbf7d0 !important;
+  color: #166534;
+  font-weight: 900;
+  border-color: #22c55e;
+}
+
+.grid-cell.hint {
+  animation: hintPulse 1s infinite alternate;
+  background-color: #fde047 !important;
+  color: #854d0e;
+}
+
+@keyframes hintPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(234, 179, 8, 0.4);
+  }
+
+  100% {
+    transform: scale(1.1);
+    box-shadow: 0 0 12px rgba(234, 179, 8, 0.9);
+  }
+}
+
+.board-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.5rem;
+}
+
+.board-hint-btn {
+  background: #fef08a;
+  color: #854d0e;
+}
+
+/* ==========================================================================
+   COLUNA DIREITA: CENÁRIO DA HISTÓRIA & PALAVRAS (PÁGINA 2 DO PDF)
+   ========================================================================== */
+.story-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Card da Ilustração da Turma */
+.illustration-card {
+  background: #ffffff;
+  border: var(--border-comic);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-comic-lg);
+  overflow: hidden;
+  position: relative;
+}
+
+.edition-badge {
+  background: var(--comic-green);
+  color: #ffffff;
+  font-family: var(--font-comic-title);
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  padding: 8px 16px;
+  border-bottom: 3px solid #101c2c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.scene-image-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #e2e8f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.scene-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.scene-image:hover {
+  transform: scale(1.02);
+}
+
+/* Caixa de Texto do Cenário (Como no PDF) */
+/* Caixa de Texto do Cenário (História Integrada) */
+.sentence-box {
+  background: #ffffff;
+  border: var(--border-comic);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-comic-lg);
+  padding: 1.35rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.sentence-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed #cbd5e1;
+  padding-bottom: 0.65rem;
+}
+
+.sentence-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sentence-icon {
+  font-size: 1.4rem;
+}
+
+.sentence-title {
+  font-family: var(--font-comic-title);
+  font-size: 1.45rem;
+  color: var(--comic-blue);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.words-counter-badge {
+  font-family: var(--font-comic-title);
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  background: #fef08a;
+  color: #101c2c;
+  border: 2px solid #101c2c;
+  box-shadow: 2px 2px 0 #101c2c;
+  padding: 4px 14px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Banner Explicativo Pedagógico */
+.sentence-instruction-banner {
+  background: #eff6ff;
+  border: 2px dashed #0077c8;
+  border-radius: var(--border-radius-sm);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e3a8a;
+  line-height: 1.4;
+}
+
+.sentence-instruction-banner .instruction-icon {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.sentence-instruction-banner strong {
+  color: #0b192c;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.sentence-content {
+  font-size: 1.18rem;
+  line-height: 1.75;
+  font-weight: 500;
+  color: #1e293b;
+  letter-spacing: 0.2px;
+}
+
+/* Palavras-Alvo em Negrito na História */
+.sentence-content .target-word {
+  font-weight: 800;
+  color: #0b192c;
+  padding: 2px 6px;
+  margin: 0 1px;
+  border-radius: 4px;
+  background: rgba(11, 25, 44, 0.06);
+  border-bottom: 2px solid #0b192c;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-block;
+  cursor: default;
+}
+
+.sentence-content .target-word:hover {
+  background: rgba(0, 119, 200, 0.12);
+  border-bottom-color: #0077c8;
+}
+
+/* Palavra Encontrada: FICA EM VERMELHO NO TEXTO COM ANIMAÇÃO! */
+.sentence-content .target-word.found-word {
+  color: #e52525 !important;
+  font-weight: 900 !important;
+  background: rgba(229, 37, 37, 0.14) !important;
+  border-bottom: 3px solid #e52525 !important;
+  box-shadow: 0 2px 8px rgba(229, 37, 37, 0.25);
+  animation: wordFoundCelebration 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Efeito ao Acionar Dica */
+.sentence-content .target-word.hint-word {
+  background: #fef08a !important;
+  border-bottom: 3px solid #eab308 !important;
+  color: #854d0e !important;
+  animation: wordHintPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes wordFoundCelebration {
+  0% {
+    transform: scale(0.9);
+  }
+
+  50% {
+    transform: scale(1.18) translateY(-2px);
+    background: #ff2a3b !important;
+    color: #ffffff !important;
+  }
+
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes wordHintPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(234, 179, 8, 0);
+  }
+
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 12px rgba(234, 179, 8, 0.7);
+  }
+}
+
+/* Lista de Palavras para Encontrar */
+.words-card {
+  background: #ffffff;
+  border: var(--border-comic);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-comic-lg);
+  padding: 1.25rem 1.5rem;
+}
+
+.words-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.words-title {
+  font-family: var(--font-comic-title);
+  font-size: 1.3rem;
+  color: var(--comic-red);
+  letter-spacing: 1px;
+}
+
+.words-counter {
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: #f1f5f9;
+  border: 2px solid #101c2c;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.words-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.word-tag {
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  padding: 6px 12px;
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.word-tag.found {
+  background: #dcfce7;
+  border-color: #166534;
+  color: #166534;
+  text-decoration: line-through;
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   MODAIS (VITÓRIA, RANKING, PERSONALIZADO, REGRAS)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 22, 38, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-card {
+  background: #ffffff;
+  border: 4px solid #101c2c;
+  border-radius: var(--border-radius-lg);
+  box-shadow: 8px 8px 0px #101c2c;
+  width: 100%;
+  max-width: 520px;
+  overflow: hidden;
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.open .modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.modal-header {
+  background: var(--comic-blue);
+  color: #ffffff;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #101c2c;
+}
+
+.modal-header.victory {
+  background: var(--comic-yellow);
+  color: #101c2c;
+}
+
+.modal-title {
+  font-family: var(--font-comic-title);
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+.btn-close-modal {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: inherit;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Estatísticas da Vitória */
+.victory-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.victory-stat-item {
+  background: #f8fafc;
+  border: 2px solid #101c2c;
+  border-radius: var(--border-radius-sm);
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.victory-stat-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.victory-stat-val {
+  font-family: var(--font-comic-title);
+  font-size: 2rem;
+  color: var(--comic-red);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.form-input,
+.form-textarea {
+  font-family: var(--font-comic-body);
+  font-size: 1rem;
+  padding: 8px 12px;
+  border: 2px solid #101c2c;
+  border-radius: var(--border-radius-sm);
+  outline: none;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--comic-blue);
+  box-shadow: 0 0 0 3px rgba(0, 119, 200, 0.2);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+/* Canvas do Confete */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 300;
+}
+
+/* ==========================================================================
+   RODAPÉ
+   ========================================================================== */
+.game-footer {
+  margin-top: auto;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  padding: 0rem 1.5rem;
+  background: rgba(8, 20, 36, 0.95);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-credits {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.footer-logo-agdev {
+  height: 80px;
+  width: auto;
+  background: #ffffff00;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 0px solid #000;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (TABLETS E CELULARES)
+   ========================================================================== */
+@media (max-width: 960px) {
+  .game-main {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .grid-container {
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 640px) {
+  .game-navbar {
+    padding: 0.5rem 1rem;
+  }
+
+  .nav-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .board-card,
+  .sentence-box,
+  .words-card,
+  .illustration-card {
+    padding: 1rem;
+  }
+
+  .title-tag-caca {
+    font-size: 3rem;
+  }
+
+  .title-tag-palavras {
+    font-size: 2.6rem;
+  }
+
+  .btn-play-pill {
+    padding: 8px 36px;
+    font-size: 1.8rem;
+  }
+}

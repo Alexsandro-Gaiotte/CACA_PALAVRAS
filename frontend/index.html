@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Caça-Palavras Turma da Mônica - Saquarema & A.G Dev</title>
+  <meta name="description" content="Jogo educativo e interativo de caça-palavras da Turma da Mônica com temas de leitura e vocabulário escolar.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/logos/agdev-logo.png">
+</head>
+<body>
+
+  <!-- ====================================================================
+       CANVAS DE CONFETES DA VITÓRIA
+       ==================================================================== -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- ====================================================================
+       TELA INICIAL / COVER (BASEADA NA PÁGINA 1 DO PDF)
+       ==================================================================== -->
+  <section id="cover-screen" class="cover-screen" aria-label="Tela Inicial">
+    <div class="comic-grid-overlay"></div>
+
+    <header class="cover-header">
+      <img src="assets/logos/saquarema-logo.png" alt="Prefeitura de Saquarema - Secretaria Municipal de Educação, Cultura, Inclusão, Ciência e Tecnologia" class="cover-logo-saquarema">
+    </header>
+
+    <div class="cover-center">
+      <div class="title-tag-caca">CAÇA</div>
+      <div class="title-tag-palavras">PALAVRAS</div>
+      <div class="title-tag-turma">TURMA DA</div>
+      <div class="title-logo-monica-box">
+        <span class="title-logo-monica-text">MÔNICA</span>
+      </div>
+
+      <div class="cover-options">
+        <div class="cover-option-group">
+          <label for="cover-theme-select">Tema:</label>
+          <select id="cover-theme-select" class="cover-select">
+            <option value="aniversario_escola">Aniversário na Escola</option>
+            <option value="bairro_limoeiro">O Bairro do Limoeiro</option>
+            <option value="planos_cebolinha">Planos Infalíveis</option>
+            <option value="lanche_magali">A Hora do Lanche</option>
+          </select>
+        </div>
+
+        <div class="cover-option-group">
+          <label for="cover-diff-select">Dificuldade:</label>
+          <select id="cover-diff-select" class="cover-select">
+            <option value="easy">Fácil (10x10)</option>
+            <option value="medium" selected>Médio (12x12)</option>
+            <option value="hard">Difícil (14x14)</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="btn-start-game" class="btn-play-pill" type="button" aria-label="Iniciar o jogo">
+        JOGAR
+      </button>
+    </div>
+
+    <footer class="cover-footer">
+      <img src="assets/logos/agdev-logo.png" alt="A.G DEV Solution" class="cover-logo-agdev">
+    </footer>
+  </section>
+
+
+  <!-- ====================================================================
+       TELA DO JOGO (BASEADA NA PÁGINA 2 DO PDF E EXPANDIDA)
+       ==================================================================== -->
+  <div id="game-container" class="game-container">
+    
+    <!-- Barra Superior -->
+    <header class="game-navbar">
+      <div class="nav-brand">
+        <img src="assets/logos/saquarema-logo.png" alt="Saquarema" class="nav-logo-saquarema">
+        <h1 class="nav-title">CAÇA-PALAVRAS</h1>
+      </div>
+
+      <div class="nav-controls">
+        <div class="stat-chip timer" title="Tempo da partida">
+          <span>⏱️</span>
+          <span id="timer-display">00:00</span>
+        </div>
+
+        <div class="stat-chip score" title="Pontuação atual">
+          <span>⭐</span>
+          <span id="score-display">0 pts</span>
+        </div>
+
+        <button id="btn-hint" class="btn-comic board-hint-btn" title="Dica: Revela a 1ª letra de uma palavra (Atalho: H)">
+          <span>💡 Dica</span>
+          <span id="hint-counter-badge">(3)</span>
+        </button>
+
+        <button id="btn-toggle-audio" class="btn-comic" title="Ativar ou desativar som (Atalho: M)" aria-label="Alternar áudio">
+          <span id="audio-icon">🔊</span>
+        </button>
+
+        <button id="btn-open-leaderboard" class="btn-comic" title="Ver classificação dos jogadores">
+          🏆 Ranking
+        </button>
+
+        <button id="btn-custom-modal" class="btn-comic" title="Criar caça-palavras personalizado">
+          ✏️ Criar
+        </button>
+
+        <button id="btn-back-menu" class="btn-comic btn-comic-danger" title="Voltar para a tela inicial">
+          🏠 Menu
+        </button>
+      </div>
+    </header>
+
+    <!-- Área Principal do Jogo -->
+    <main class="game-main">
+      
+      <!-- Coluna da Esquerda: Grade de Palavras -->
+      <section class="board-card" aria-label="Tabuleiro do Caça-Palavras">
+        <div class="board-header">
+          <h2 id="board-theme-title" class="board-theme-title">Aniversário na Escola</h2>
+          <span id="board-difficulty-badge" class="board-difficulty-badge">Médio</span>
+        </div>
+
+        <!-- Grade Dinâmica Gerada por JS -->
+        <div id="grid-container" class="grid-container" role="grid" aria-label="Grade de letras do caça-palavras">
+          <!-- Células geradas via script -->
+        </div>
+
+        <div class="board-footer">
+          <button id="btn-new-puzzle" class="btn-comic btn-comic-primary" title="Embaralha e gera uma nova grade com as mesmas palavras">
+            🔄 Nova Grade
+          </button>
+          
+          <div class="theme-selector-inline">
+            <label for="theme-select-game" class="sr-only">Trocar Fase:</label>
+            <select id="theme-select-game" class="cover-select" title="Trocar fase">
+              <!-- Opções povoadas via JS -->
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Coluna da Direita: Cenário da História e Palavras (Página 2 do PDF) -->
+      <aside class="story-card" aria-label="Cenário da História e Palavras">
+        
+        <!-- Ilustração da Edição -->
+        <div class="illustration-card">
+          <div id="edition-badge" class="edition-badge">
+            <span>NESTA EDIÇÃO: ANIVERSÁRIO NA ESCOLA</span>
+            <span>🎂</span>
+          </div>
+          <div class="scene-image-wrapper">
+            <img id="scene-image" src="assets/images/birthday_school.jpg" alt="Ilustração da Turma da Mônica na sala de aula" class="scene-image">
+          </div>
+        </div>
+
+        <!-- Parágrafo da História Integrada com Palavras em Negrito e Contador -->
+        <div class="sentence-box">
+          <div class="sentence-header">
+            <div class="sentence-title-group">
+              <span class="sentence-icon" aria-hidden="true">📖</span>
+              <h3 class="sentence-title">História da Edição</h3>
+            </div>
+            <div class="words-counter-badge" title="Progresso das palavras encontradas">
+              <span id="words-progress">0 / 0 encontradas</span>
+            </div>
+          </div>
+
+          <div class="sentence-instruction-banner">
+            <span class="instruction-icon" aria-hidden="true">🔍</span>
+            <span>As palavras para encontrar no caça-palavras são as em <strong>negrito</strong> na história abaixo:</span>
+          </div>
+
+          <p id="scenario-sentence" class="sentence-content">
+            <!-- Texto com as palavras-alvo em negrito que ficam vermelhas ao encontrar -->
+          </p>
+        </div>
+
+      </aside>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="game-footer">
+      <div class="footer-credits">
+        <strong>Prefeitura de Saquarema</strong> • Secretaria Municipal de Educação, Cultura, Inclusão, Ciência e Tecnologia.
+      </div>
+      <img src="assets/logos/agdev-logo.png" alt="A.G DEV Solution" class="footer-logo-agdev">
+    </footer>
+
+  </div>
+
+
+  <!-- ====================================================================
+       MODAL DE VITÓRIA
+       ==================================================================== -->
+  <div id="victory-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="victory-title">
+    <div class="modal-card">
+      <div class="modal-header victory">
+        <h3 id="victory-title" class="modal-title">🎉 PARABÉNS! VOCÊ VENCEU!</h3>
+        <button class="btn-close-modal" id="btn-close-victory" aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 1.15rem; font-weight: 600; text-align: center;">
+          Você encontrou todas as palavras da história e completou este desafio da Turma da Mônica!
+        </p>
+
+        <div class="victory-stats">
+          <div class="victory-stat-item">
+            <div class="victory-stat-label">Tempo Total</div>
+            <div id="victory-time-val" class="victory-stat-val">00:45</div>
+          </div>
+          <div class="victory-stat-item">
+            <div class="victory-stat-label">Pontuação</div>
+            <div id="victory-score-val" class="victory-stat-val">1.850</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="player-name-input" class="form-label">Digite seu nome para o Ranking:</label>
+          <input type="text" id="player-name-input" class="form-input" placeholder="Ex: Mônica, Cebolinha..." maxlength="20">
+        </div>
+
+        <div class="modal-actions">
+          <button id="btn-save-score" class="btn-comic btn-comic-primary">💾 Salvar Pontuação</button>
+          <button id="btn-next-level" class="btn-comic">Próxima Fase ➡️</button>
+          <button id="btn-play-again" class="btn-comic">Jogar Novamente 🔄</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ====================================================================
+       MODAL DE RANKING / LEADERBOARD
+       ==================================================================== -->
+  <div id="leaderboard-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="leaderboard-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="leaderboard-title" class="modal-title">🏆 QUADRO DE HONRA</h3>
+        <button class="btn-close-modal" id="btn-close-leaderboard" aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <label for="leaderboard-filter-diff" class="form-label">Dificuldade:</label>
+          <select id="leaderboard-filter-diff" class="cover-select">
+            <option value="all">Todas</option>
+            <option value="easy">Fácil</option>
+            <option value="medium">Médio</option>
+            <option value="hard">Difícil</option>
+          </select>
+        </div>
+
+        <div style="max-height: 280px; overflow-y: auto; border: 2px solid #101c2c; border-radius: var(--border-radius-sm);">
+          <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead style="background: #f1f5f9; border-bottom: 2px solid #101c2c; font-size: 0.9rem;">
+              <tr>
+                <th style="padding: 8px;">#</th>
+                <th style="padding: 8px;">Jogador</th>
+                <th style="padding: 8px;">Pontos</th>
+                <th style="padding: 8px;">Tempo</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-table-body">
+              <!-- Linhas inseridas dinamicamente -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-comic" id="btn-close-leaderboard-action">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ====================================================================
+       MODAL DE CRIADOR PERSONALIZADO (PARA PROFESSORES / ALUNOS)
+       ==================================================================== -->
+  <div id="custom-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="custom-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="custom-title" class="modal-title">✏️ CRIAR SEU CAÇA-PALAVRAS</h3>
+        <button class="btn-close-modal" id="btn-close-custom" aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.95rem; color: var(--text-muted);">
+          Educador ou aluno: digite o tema e as palavras que deseja colocar na sua própria grade!
+        </p>
+
+        <div class="form-group">
+          <label for="custom-theme-title" class="form-label">Título do Tema:</label>
+          <input type="text" id="custom-theme-title" class="form-input" placeholder="Ex: Ciências e Natureza">
+        </div>
+
+        <div class="form-group">
+          <label for="custom-words-input" class="form-label">Palavras (separadas por vírgula):</label>
+          <textarea id="custom-words-input" class="form-textarea" rows="3" placeholder="Ex: PLANETA, FLORESTA, RIO, ANIMAIS, SOLAR"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="custom-sentence-input" class="form-label">História da Edição (as palavras-alvo ficam em negrito e devem ser encontradas no caça-palavras):</label>
+          <textarea id="custom-sentence-input" class="form-textarea" rows="3" placeholder="Ex: A turma cuida com carinho da floresta e dos rios do nosso planeta. Você também pode destacar com **palavra**."></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button id="btn-generate-custom" class="btn-comic btn-comic-primary">Gerar Jogo</button>
+          <button id="btn-cancel-custom" class="btn-comic">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts do Jogo -->
+  <script src="js/wordfind.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/confetti.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

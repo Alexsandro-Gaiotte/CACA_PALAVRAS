@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Anjinho",
+    "score": 2100,
+    "themeId": "aniversario_escola",
+    "difficulty": "hard",
+    "timeSeconds": 40,
+    "id": "score-1792415237921",
+    "date": "2026-10-19"
+  },
+  {
+    "id": "score-4",
+    "name": "Magali",
+    "score": 1980,
+    "themeId": "lanche_magali",
+    "difficulty": "hard",
+    "timeSeconds": 65,
+    "date": "2026-10-19"
+  },
+  {
+    "id": "score-1",
+    "name": "Mônica",
+    "score": 1850,
+    "themeId": "aniversario_escola",
+    "difficulty": "medium",
+    "timeSeconds": 48,
+    "date": "2026-10-19"
+  },
+  {
+    "id": "score-2",
+    "name": "Cebolinha",
+    "score": 1620,
+    "themeId": "planos_cebolinha",
+    "difficulty": "easy",
+    "timeSeconds": 35,
+    "date": "2026-10-19"
+  },
+  {
+    "id": "score-3",
+    "name": "Cascão",
+    "score": 1540,
+    "themeId": "bairro_limoeiro",
+    "difficulty": "easy",
+    "timeSeconds": 42,
+    "date": "2026-10-19"
+  }
+]
