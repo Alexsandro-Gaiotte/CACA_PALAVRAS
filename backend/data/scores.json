@@ -1,47 +1,47 @@
 [
   {
-    "name": "Anjinho",
+    "id": "score-1",
+    "name": "Lucas",
     "score": 2100,
-    "themeId": "aniversario_escola",
+    "themeId": "sala_aula",
     "difficulty": "hard",
     "timeSeconds": 40,
-    "id": "score-1792415237921",
-    "date": "2026-10-19"
-  },
-  {
-    "id": "score-4",
-    "name": "Magali",
-    "score": 1980,
-    "themeId": "lanche_magali",
-    "difficulty": "hard",
-    "timeSeconds": 65,
-    "date": "2026-10-19"
-  },
-  {
-    "id": "score-1",
-    "name": "Mônica",
-    "score": 1850,
-    "themeId": "aniversario_escola",
-    "difficulty": "medium",
-    "timeSeconds": 48,
-    "date": "2026-10-19"
+    "date": "2026-10-27"
   },
   {
     "id": "score-2",
-    "name": "Cebolinha",
-    "score": 1620,
-    "themeId": "planos_cebolinha",
-    "difficulty": "easy",
-    "timeSeconds": 35,
-    "date": "2026-10-19"
+    "name": "Sofia",
+    "score": 1980,
+    "themeId": "cenario_melancia",
+    "difficulty": "hard",
+    "timeSeconds": 65,
+    "date": "2026-10-27"
   },
   {
     "id": "score-3",
-    "name": "Cascão",
+    "name": "Gabriel",
+    "score": 1850,
+    "themeId": "sala_aula",
+    "difficulty": "medium",
+    "timeSeconds": 48,
+    "date": "2026-10-27"
+  },
+  {
+    "id": "score-4",
+    "name": "Beatriz",
+    "score": 1620,
+    "themeId": "quadro_planos",
+    "difficulty": "easy",
+    "timeSeconds": 35,
+    "date": "2026-10-27"
+  },
+  {
+    "id": "score-5",
+    "name": "Léo",
     "score": 1540,
-    "themeId": "bairro_limoeiro",
+    "themeId": "bairro_amigos",
     "difficulty": "easy",
     "timeSeconds": 42,
-    "date": "2026-10-19"
+    "date": "2026-10-27"
   }
 ]

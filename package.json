@@ -1,13 +1,13 @@
 {
-  "name": "caca-palavras-turma-da-monica",
+  "name": "caca-palavras-educativo",
   "version": "1.0.0",
-  "description": "Jogo educativo e interativo de caça-palavras da Turma da Mônica - Saquarema / A.G Dev Solution",
+  "description": "Jogo educativo e interativo de caça-palavras - Saquarema / A.G Dev Solution",
   "main": "backend/server.js",
   "scripts": {
     "start": "node backend/server.js",
     "dev": "node backend/server.js"
   },
-  "keywords": ["game", "word-search", "turma-da-monica", "educacao", "saquarema"],
+  "keywords": ["game", "word-search", "educacao", "leitura", "saquarema"],
   "author": "A.G Dev Solution",
   "license": "MIT"
 }

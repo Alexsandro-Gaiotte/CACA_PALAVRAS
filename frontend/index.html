@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Caça-Palavras Turma da Mônica - Saquarema & A.G Dev</title>
-  <meta name="description" content="Jogo educativo e interativo de caça-palavras da Turma da Mônica com temas de leitura e vocabulário escolar.">
+  <title>Caça-Palavras - Desafio das Histórias - Saquarema & A.G Dev</title>
+  <meta name="description" content="Jogo educativo e interativo de caça-palavras com temas de leitura, vocabulário e histórias infantis.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="assets/logos/agdev-logo.png">
 </head>
@@ -28,19 +28,19 @@
     <div class="cover-center">
       <div class="title-tag-caca">CAÇA</div>
       <div class="title-tag-palavras">PALAVRAS</div>
-      <div class="title-tag-turma">TURMA DA</div>
-      <div class="title-logo-monica-box">
-        <span class="title-logo-monica-text">MÔNICA</span>
+      <div class="title-tag-turma">DESAFIO DAS</div>
+      <div class="title-logo-highlight-box">
+        <span class="title-logo-highlight-text">HISTÓRIAS</span>
       </div>
 
       <div class="cover-options">
         <div class="cover-option-group">
           <label for="cover-theme-select">Tema:</label>
           <select id="cover-theme-select" class="cover-select">
-            <option value="aniversario_escola">Aniversário na Escola</option>
-            <option value="bairro_limoeiro">O Bairro do Limoeiro</option>
-            <option value="planos_cebolinha">Planos Infalíveis</option>
-            <option value="lanche_magali">A Hora do Lanche</option>
+            <option value="sala_aula">Festa na Sala de Aula</option>
+            <option value="cenario_melancia">A Hora da Melancia</option>
+            <option value="quadro_planos">O Quadro de Planos</option>
+            <option value="bairro_amigos">Brincadeiras no Bairro</option>
           </select>
         </div>
 
@@ -146,11 +146,11 @@
         <!-- Ilustração da Edição -->
         <div class="illustration-card">
           <div id="edition-badge" class="edition-badge">
-            <span>NESTA EDIÇÃO: ANIVERSÁRIO NA ESCOLA</span>
+            <span>EDIÇÃO: FESTA NA SALA DE AULA</span>
             <span>🎂</span>
           </div>
           <div class="scene-image-wrapper">
-            <img id="scene-image" src="assets/images/birthday_school.jpg" alt="Ilustração da Turma da Mônica na sala de aula" class="scene-image">
+            <img id="scene-image" src="assets/images/sala_aula.jpg" alt="Ilustração da sala de aula em festa" class="scene-image">
           </div>
         </div>
 
@@ -202,7 +202,7 @@
       </div>
       <div class="modal-body">
         <p style="font-size: 1.15rem; font-weight: 600; text-align: center;">
-          Você encontrou todas as palavras da história e completou este desafio da Turma da Mônica!
+          Você encontrou todas as palavras da história e completou este grande desafio!
         </p>
 
         <div class="victory-stats">
@@ -218,7 +218,7 @@
 
         <div class="form-group">
           <label for="player-name-input" class="form-label">Digite seu nome para o Ranking:</label>
-          <input type="text" id="player-name-input" class="form-input" placeholder="Ex: Mônica, Cebolinha..." maxlength="20">
+          <input type="text" id="player-name-input" class="form-input" placeholder="Ex: Lucas, Sofia, Gabriel..." maxlength="20">
         </div>
 
         <div class="modal-actions">
@@ -302,6 +302,22 @@
         <div class="form-group">
           <label for="custom-sentence-input" class="form-label">História da Edição (as palavras-alvo ficam em negrito e devem ser encontradas no caça-palavras):</label>
           <textarea id="custom-sentence-input" class="form-textarea" rows="3" placeholder="Ex: A turma cuida com carinho da floresta e dos rios do nosso planeta. Você também pode destacar com **palavra**."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Imagem do Cenário / Tema:</label>
+          <div class="custom-image-input-container">
+            <label for="custom-image-file" class="btn-comic btn-file-upload">
+              📷 Escolher Imagem...
+            </label>
+            <input type="file" id="custom-image-file" accept="image/*" class="sr-only">
+            <span id="custom-image-name" class="custom-image-name">Nenhum arquivo (usará imagem padrão)</span>
+          </div>
+
+          <div id="custom-image-preview-box" class="custom-image-preview-box" style="display: none;">
+            <img id="custom-image-preview" src="" alt="Prévia da imagem selecionada">
+            <button type="button" id="btn-remove-image" class="btn-remove-img" title="Remover imagem">&times;</button>
+          </div>
         </div>
 
         <div class="modal-actions">

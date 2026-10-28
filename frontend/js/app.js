@@ -1,5 +1,5 @@
 /**
- * App - Controlador Central do Caça-Palavras Turma da Mônica
+ * App - Controlador Central do Caça-Palavras Educativo
  * Saquarema & A.G Dev Solution
  */
 (function() {
@@ -8,48 +8,48 @@
   // Temas padrão embutidos (garantem funcionamento 100% offline via file://)
   const FALLBACK_THEMES = [
     {
-      id: "aniversario_escola",
-      title: "Aniversário na Escola",
-      editionBadge: "NESTA EDIÇÃO: ANIVERSÁRIO NA ESCOLA",
-      image: "assets/images/birthday_school.jpg",
-      sentence: "A <strong class=\"target-word\" data-clean=\"SALA\">SALA</strong> DE <strong class=\"target-word\" data-clean=\"AULA\">AULA</strong> SE ENCHE DE <strong class=\"target-word\" data-clean=\"ALEGRIA\">ALEGRIA</strong> E <strong class=\"target-word\" data-clean=\"FESTA\">FESTA</strong> PARA <strong class=\"target-word\" data-clean=\"COMEMORAR\">COMEMORAR</strong> O <strong class=\"target-word\" data-clean=\"ANIVERSARIO\">ANIVERSÁRIO</strong> NA <strong class=\"target-word\" data-clean=\"ESCOLA\">ESCOLA</strong>. ENTRE <strong class=\"target-word\" data-clean=\"CADERNOS\">CADERNOS</strong> E <strong class=\"target-word\" data-clean=\"SORRISOS\">SORRISOS</strong>, A <strong class=\"target-word\" data-clean=\"TURMA\">TURMA</strong> DA <strong class=\"target-word\" data-clean=\"MONICA\">MÔNICA</strong> SE REÚNE PARA <strong class=\"target-word\" data-clean=\"CELEBRAR\">CELEBRAR</strong> ESSE <strong class=\"target-word\" data-clean=\"DIA\">DIA</strong> TÃO <strong class=\"target-word\" data-clean=\"ESPECIAL\">ESPECIAL</strong>.",
+      id: "sala_aula",
+      title: "Festa na Sala de Aula",
+      editionBadge: "EDIÇÃO: FESTA NA SALA DE AULA",
+      image: "assets/images/sala_aula.jpg",
+      sentence: "A <strong class=\"target-word\" data-clean=\"SALA\">SALA</strong> DE <strong class=\"target-word\" data-clean=\"AULA\">AULA</strong> SE ENCHE DE <strong class=\"target-word\" data-clean=\"ALEGRIA\">ALEGRIA</strong> E <strong class=\"target-word\" data-clean=\"FESTA\">FESTA</strong> PARA <strong class=\"target-word\" data-clean=\"COMEMORAR\">COMEMORAR</strong> O <strong class=\"target-word\" data-clean=\"ANIVERSARIO\">ANIVERSÁRIO</strong> NA <strong class=\"target-word\" data-clean=\"ESCOLA\">ESCOLA</strong>. ENTRE <strong class=\"target-word\" data-clean=\"CADERNOS\">CADERNOS</strong> E <strong class=\"target-word\" data-clean=\"SORRISOS\">SORRISOS</strong>, OS <strong class=\"target-word\" data-clean=\"AMIGOS\">AMIGOS</strong> SE REÚNEM PARA <strong class=\"target-word\" data-clean=\"CELEBRAR\">CELEBRAR</strong> ESSE <strong class=\"target-word\" data-clean=\"DIA\">DIA</strong> TÃO <strong class=\"target-word\" data-clean=\"ESPECIAL\">ESPECIAL</strong>.",
       words: [
         "SALA", "AULA", "ALEGRIA", "FESTA", "COMEMORAR", 
         "ANIVERSÁRIO", "ESCOLA", "CADERNOS", "SORRISOS", 
-        "TURMA", "MÔNICA", "CELEBRAR", "DIA", "ESPECIAL"
+        "AMIGOS", "CELEBRAR", "DIA", "ESPECIAL"
       ]
     },
     {
-      id: "bairro_limoeiro",
-      title: "O Bairro do Limoeiro",
-      editionBadge: "NESTA EDIÇÃO: O BAIRRO DO LIMOEIRO",
-      image: "assets/images/limoeiro_scene_1791902340682.jpg",
-      sentence: "NO CORAÇÃO DO <strong class=\"target-word\" data-clean=\"BAIRRO\">BAIRRO</strong> DO <strong class=\"target-word\" data-clean=\"LIMOEIRO\">LIMOEIRO</strong>, OS <strong class=\"target-word\" data-clean=\"AMIGOS\">AMIGOS</strong> BRINCAM NA <strong class=\"target-word\" data-clean=\"PRACA\">PRAÇA</strong> SOB O <strong class=\"target-word\" data-clean=\"SOL\">SOL</strong>. CADA <strong class=\"target-word\" data-clean=\"RUA\">RUA</strong> GUARDA UMA <strong class=\"target-word\" data-clean=\"HISTORIA\">HISTÓRIA</strong> DIVERTIDA, COM MUITA <strong class=\"target-word\" data-clean=\"CORRIDA\">CORRIDA</strong>, <strong class=\"target-word\" data-clean=\"RISADAS\">RISADAS</strong> E O INSEPARÁVEL <strong class=\"target-word\" data-clean=\"COELHINHO\">COELHINHO</strong> AZUL.",
+      id: "cenario_melancia",
+      title: "A Hora da Melancia",
+      editionBadge: "EDIÇÃO: O FESTIVAL DA MELANCIA",
+      image: "assets/images/cenario_melancia.jpg",
+      sentence: "UMA GRANDE FATIA DOCE DE <strong class=\"target-word\" data-clean=\"MELANCIA\">MELANCIA</strong> REPLETA DE <strong class=\"target-word\" data-clean=\"SABOR\">SABOR</strong> É A ATRAÇÃO DO DIA. NA <strong class=\"target-word\" data-clean=\"CESTA\">CESTA</strong> DE <strong class=\"target-word\" data-clean=\"PIQUENIQUE\">PIQUENIQUE</strong> TEM <strong class=\"target-word\" data-clean=\"BOLO\">BOLO</strong>, <strong class=\"target-word\" data-clean=\"SORVETE\">SORVETE</strong>, <strong class=\"target-word\" data-clean=\"PIPOCA\">PIPOCA</strong> E <strong class=\"target-word\" data-clean=\"FRUTAS\">FRUTAS</strong> FRESCAS PARA <strong class=\"target-word\" data-clean=\"DIVIDIR\">DIVIDIR</strong> COM TODA A <strong class=\"target-word\" data-clean=\"GALERA\">GALERA</strong>.",
       words: [
-        "BAIRRO", "LIMOEIRO", "AMIGOS", "PRAÇA", "SOL", 
-        "RUA", "HISTÓRIA", "CORRIDA", "RISADAS", "COELHINHO"
+        "MELANCIA", "SABOR", "CESTA", "PIQUENIQUE", 
+        "BOLO", "SORVETE", "PIPOCA", "FRUTAS", "DIVIDIR", "GALERA"
       ]
     },
     {
-      id: "planos_cebolinha",
-      title: "Planos Infalíveis do Cebolinha",
-      editionBadge: "NESTA EDIÇÃO: OS PLANOS INFALÍVEIS",
-      image: "assets/images/cebolinha_scene_1791902400074.jpg",
-      sentence: "COM SEU <strong class=\"target-word\" data-clean=\"GIZ\">GIZ</strong> E UMA <strong class=\"target-word\" data-clean=\"LOUSA\">LOUSA</strong> REPLETA DE <strong class=\"target-word\" data-clean=\"IDEIAS\">IDEIAS</strong>, O <strong class=\"target-word\" data-clean=\"CEBOLINHA\">CEBOLINHA</strong> ARQUITETA UM <strong class=\"target-word\" data-clean=\"PLANO\">PLANO</strong> PARA CAPTURAR O <strong class=\"target-word\" data-clean=\"SANSAO\">SANSÃO</strong>. O FIEL <strong class=\"target-word\" data-clean=\"CASCAO\">CASCÃO</strong> AJUDA NA <strong class=\"target-word\" data-clean=\"ESTRATEGIA\">ESTRATÉGIA</strong>, TENTANDO ESCAPAR DO <strong class=\"target-word\" data-clean=\"BANHO\">BANHO</strong> E DA <strong class=\"target-word\" data-clean=\"FORCA\">FORÇA</strong> DA DONA DA RUA.",
+      id: "quadro_planos",
+      title: "O Quadro de Planos",
+      editionBadge: "EDIÇÃO: O GRANDE PLANO SECRETO",
+      image: "assets/images/quadro_planos.jpg",
+      sentence: "COM SEU <strong class=\"target-word\" data-clean=\"GIZ\">GIZ</strong> E UMA <strong class=\"target-word\" data-clean=\"LOUSA\">LOUSA</strong> REPLETA DE <strong class=\"target-word\" data-clean=\"IDEIAS\">IDEIAS</strong>, DESENHA UM <strong class=\"target-word\" data-clean=\"PLANO\">PLANO</strong> CHEIO DE <strong class=\"target-word\" data-clean=\"MISTERIO\">MISTÉRIO</strong>. COM MUITA <strong class=\"target-word\" data-clean=\"ESTRATEGIA\">ESTRATÉGIA</strong> E <strong class=\"target-word\" data-clean=\"FOCO\">FOCO</strong>, CADA PASSO É TRAÇADO PARA VENCER O <strong class=\"target-word\" data-clean=\"DESAFIO\">DESAFIO</strong> E ALCANÇAR A <strong class=\"target-word\" data-clean=\"VITORIA\">VITÓRIA</strong>.",
       words: [
-        "GIZ", "LOUSA", "IDEIAS", "CEBOLINHA", "PLANO", 
-        "SANSÃO", "CASCÃO", "ESTRATÉGIA", "BANHO", "FORÇA"
+        "GIZ", "LOUSA", "IDEIAS", "PLANO", 
+        "MISTÉRIO", "ESTRATÉGIA", "FOCO", "DESAFIO", "VITÓRIA"
       ]
     },
     {
-      id: "lanche_magali",
-      title: "A Hora do Lanche da Magali",
-      editionBadge: "NESTA EDIÇÃO: O FESTIVAL DE SABORES",
-      image: "assets/images/magali_scene_1791902366113.jpg",
-      sentence: "A <strong class=\"target-word\" data-clean=\"MAGALI\">MAGALI</strong> ADORA UMA FATIA DOCE DE <strong class=\"target-word\" data-clean=\"MELANCIA\">MELANCIA</strong> REPLETA DE <strong class=\"target-word\" data-clean=\"SABOR\">SABOR</strong>. NA SUA <strong class=\"target-word\" data-clean=\"CESTA\">CESTA</strong> DE <strong class=\"target-word\" data-clean=\"PIQUENIQUE\">PIQUENIQUE</strong> TEM <strong class=\"target-word\" data-clean=\"BOLO\">BOLO</strong>, <strong class=\"target-word\" data-clean=\"SORVETE\">SORVETE</strong>, <strong class=\"target-word\" data-clean=\"PIPOCA\">PIPOCA</strong> E <strong class=\"target-word\" data-clean=\"FRUTAS\">FRUTAS</strong> FRESCAS PARA TODOS OS <strong class=\"target-word\" data-clean=\"COLEGAS\">COLEGAS</strong>.",
+      id: "bairro_amigos",
+      title: "Brincadeiras no Bairro",
+      editionBadge: "EDIÇÃO: BRINCADEIRAS NA PRAÇA",
+      image: "assets/images/cenario_bairro.jpg",
+      sentence: "NO CORAÇÃO DO <strong class=\"target-word\" data-clean=\"BAIRRO\">BAIRRO</strong>, OS <strong class=\"target-word\" data-clean=\"AMIGOS\">AMIGOS</strong> BRINCAM NA <strong class=\"target-word\" data-clean=\"PRACA\">PRAÇA</strong> SOB O <strong class=\"target-word\" data-clean=\"SOL\">SOL</strong>. CADA <strong class=\"target-word\" data-clean=\"RUA\">RUA</strong> GUARDA UMA <strong class=\"target-word\" data-clean=\"HISTORIA\">HISTÓRIA</strong> DIVERTIDA, COM MUITA <strong class=\"target-word\" data-clean=\"CORRIDA\">CORRIDA</strong>, <strong class=\"target-word\" data-clean=\"RISADAS\">RISADAS</strong> E PURA <strong class=\"target-word\" data-clean=\"ALEGRIA\">ALEGRIA</strong>.",
       words: [
-        "MAGALI", "MELANCIA", "SABOR", "CESTA", "PIQUENIQUE", 
-        "BOLO", "SORVETE", "PIPOCA", "FRUTAS", "COLEGAS"
+        "BAIRRO", "AMIGOS", "PRAÇA", "SOL", 
+        "RUA", "HISTÓRIA", "CORRIDA", "RISADAS", "ALEGRIA"
       ]
     }
   ];
@@ -84,6 +84,7 @@
       this.startCell = null;
       this.currentCell = null;
       this.selectedCells = [];
+      this.customImageData = null;
 
       this.cacheDom();
       this.bindEvents();
@@ -140,6 +141,11 @@
         customThemeTitle: document.getElementById('custom-theme-title'),
         customWordsInput: document.getElementById('custom-words-input'),
         customSentenceInput: document.getElementById('custom-sentence-input'),
+        customImageFile: document.getElementById('custom-image-file'),
+        customImageName: document.getElementById('custom-image-name'),
+        customImagePreviewBox: document.getElementById('custom-image-preview-box'),
+        customImagePreview: document.getElementById('custom-image-preview'),
+        btnRemoveImage: document.getElementById('btn-remove-image'),
         btnGenerateCustom: document.getElementById('btn-generate-custom'),
         btnCancelCustom: document.getElementById('btn-cancel-custom'),
         btnCloseCustom: document.getElementById('btn-close-custom')
@@ -199,9 +205,41 @@
       this.dom.leaderboardFilterDiff.addEventListener('change', () => this.renderLeaderboardTable());
 
       this.dom.btnCustomModal.addEventListener('click', () => this.openModal(this.dom.customModal));
-      this.dom.btnCloseCustom.addEventListener('click', () => this.closeModal(this.dom.customModal));
-      this.dom.btnCancelCustom.addEventListener('click', () => this.closeModal(this.dom.customModal));
+      this.dom.btnCloseCustom.addEventListener('click', () => {
+        this.clearCustomImage();
+        this.closeModal(this.dom.customModal);
+      });
+      this.dom.btnCancelCustom.addEventListener('click', () => {
+        this.clearCustomImage();
+        this.closeModal(this.dom.customModal);
+      });
       this.dom.btnGenerateCustom.addEventListener('click', () => this.handleGenerateCustom());
+
+      if (this.dom.customImageFile) {
+        this.dom.customImageFile.addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (file) {
+            if (!file.type.startsWith('image/')) {
+              alert('Por favor, selecione um arquivo de imagem válido (PNG, JPG, etc.).');
+              return;
+            }
+            const reader = new FileReader();
+            reader.onload = (loadEvt) => {
+              this.customImageData = loadEvt.target.result;
+              this.dom.customImagePreview.src = this.customImageData;
+              this.dom.customImagePreviewBox.style.display = 'block';
+              this.dom.customImageName.textContent = file.name;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+
+      if (this.dom.btnRemoveImage) {
+        this.dom.btnRemoveImage.addEventListener('click', () => {
+          this.clearCustomImage();
+        });
+      }
 
       this.dom.btnCloseVictory.addEventListener('click', () => this.closeModal(this.dom.victoryModal));
       this.dom.btnPlayAgain.addEventListener('click', () => {
@@ -346,8 +384,8 @@
         this.difficulty === 'easy' ? 'Fácil' : (this.difficulty === 'hard' ? 'Difícil' : 'Médio');
 
       // Atualiza ilustração e frase formatada com palavras em negrito
-      this.dom.editionBadge.innerHTML = `<span>${this.currentTheme.editionBadge || 'TURMA DA MÔNICA'}</span> <span>⭐</span>`;
-      this.dom.sceneImage.src = this.currentTheme.image || 'assets/images/birthday_school.jpg';
+      this.dom.editionBadge.innerHTML = `<span>${this.currentTheme.editionBadge || 'EDIÇÃO ESPECIAL'}</span> <span>⭐</span>`;
+      this.dom.sceneImage.src = this.currentTheme.image || 'assets/images/sala_aula.jpg';
       this.dom.scenarioSentence.innerHTML = this.formatSentenceHtml(this.currentTheme.sentence || '');
 
       // As palavras para encontrar na grade são extraídas diretamente das palavras em negrito na História da Edição!
@@ -678,10 +716,11 @@
         scores = JSON.parse(localStorage.getItem('caca_palavras_scores') || '[]');
         if (scores.length === 0) {
           scores = [
-            { name: 'Mônica', score: 1850, difficulty: 'medium', timeSeconds: 48 },
-            { name: 'Cebolinha', score: 1620, difficulty: 'easy', timeSeconds: 35 },
-            { name: 'Cascão', score: 1540, difficulty: 'easy', timeSeconds: 42 },
-            { name: 'Magali', score: 1980, difficulty: 'hard', timeSeconds: 65 }
+            { name: 'Lucas', score: 2100, difficulty: 'hard', timeSeconds: 40 },
+            { name: 'Sofia', score: 1980, difficulty: 'hard', timeSeconds: 65 },
+            { name: 'Gabriel', score: 1850, difficulty: 'medium', timeSeconds: 48 },
+            { name: 'Beatriz', score: 1620, difficulty: 'easy', timeSeconds: 35 },
+            { name: 'Léo', score: 1540, difficulty: 'easy', timeSeconds: 42 }
           ];
         }
       }
@@ -740,7 +779,7 @@
         id: `custom_${Date.now()}`,
         title,
         editionBadge: `EDIÇÃO DO CRIADOR: ${title.toUpperCase()}`,
-        image: 'assets/images/birthday_school.jpg',
+        image: this.customImageData || 'assets/images/sala_aula.jpg',
         sentence: sentence,
         words: rawWords
       };
@@ -749,8 +788,20 @@
       this.populateThemeSelectors();
       this.currentTheme = customTheme;
       this.closeModal(this.dom.customModal);
+      this.clearCustomImage();
+      this.dom.customThemeTitle.value = '';
+      this.dom.customWordsInput.value = '';
+      this.dom.customSentenceInput.value = '';
       this.dom.coverScreen.classList.add('hidden');
       this.startNewGame();
+    }
+
+    clearCustomImage() {
+      this.customImageData = null;
+      if (this.dom.customImageFile) this.dom.customImageFile.value = '';
+      if (this.dom.customImagePreviewBox) this.dom.customImagePreviewBox.style.display = 'none';
+      if (this.dom.customImagePreview) this.dom.customImagePreview.src = '';
+      if (this.dom.customImageName) this.dom.customImageName.textContent = 'Nenhum arquivo (usará imagem padrão)';
     }
 
     openModal(modal) {

@@ -1,51 +1,51 @@
 [
   {
-    "id": "aniversario_escola",
-    "title": "Aniversário na Escola",
-    "editionBadge": "NESTA EDIÇÃO: ANIVERSÁRIO NA ESCOLA",
-    "image": "assets/images/birthday_school.jpg",
-    "sentence": "A <strong class=\"target-word\" data-clean=\"SALA\">SALA</strong> DE <strong class=\"target-word\" data-clean=\"AULA\">AULA</strong> SE ENCHE DE <strong class=\"target-word\" data-clean=\"ALEGRIA\">ALEGRIA</strong> E <strong class=\"target-word\" data-clean=\"FESTA\">FESTA</strong> PARA <strong class=\"target-word\" data-clean=\"COMEMORAR\">COMEMORAR</strong> O <strong class=\"target-word\" data-clean=\"ANIVERSARIO\">ANIVERSÁRIO</strong> NA <strong class=\"target-word\" data-clean=\"ESCOLA\">ESCOLA</strong>. ENTRE <strong class=\"target-word\" data-clean=\"CADERNOS\">CADERNOS</strong> E <strong class=\"target-word\" data-clean=\"SORRISOS\">SORRISOS</strong>, A <strong class=\"target-word\" data-clean=\"TURMA\">TURMA</strong> DA <strong class=\"target-word\" data-clean=\"MONICA\">MÔNICA</strong> SE REÚNE PARA <strong class=\"target-word\" data-clean=\"CELEBRAR\">CELEBRAR</strong> ESSE <strong class=\"target-word\" data-clean=\"DIA\">DIA</strong> TÃO <strong class=\"target-word\" data-clean=\"ESPECIAL\">ESPECIAL</strong>.",
+    "id": "sala_aula",
+    "title": "Festa na Sala de Aula",
+    "editionBadge": "EDIÇÃO: FESTA NA SALA DE AULA",
+    "image": "assets/images/sala_aula.jpg",
+    "sentence": "A <strong class=\"target-word\" data-clean=\"SALA\">SALA</strong> DE <strong class=\"target-word\" data-clean=\"AULA\">AULA</strong> SE ENCHE DE <strong class=\"target-word\" data-clean=\"ALEGRIA\">ALEGRIA</strong> E <strong class=\"target-word\" data-clean=\"FESTA\">FESTA</strong> PARA <strong class=\"target-word\" data-clean=\"COMEMORAR\">COMEMORAR</strong> O <strong class=\"target-word\" data-clean=\"ANIVERSARIO\">ANIVERSÁRIO</strong> NA <strong class=\"target-word\" data-clean=\"ESCOLA\">ESCOLA</strong>. ENTRE <strong class=\"target-word\" data-clean=\"CADERNOS\">CADERNOS</strong> E <strong class=\"target-word\" data-clean=\"SORRISOS\">SORRISOS</strong>, OS <strong class=\"target-word\" data-clean=\"AMIGOS\">AMIGOS</strong> SE REÚNEM PARA <strong class=\"target-word\" data-clean=\"CELEBRAR\">CELEBRAR</strong> ESSE <strong class=\"target-word\" data-clean=\"DIA\">DIA</strong> TÃO <strong class=\"target-word\" data-clean=\"ESPECIAL\">ESPECIAL</strong>.",
     "words": [
       "SALA", "AULA", "ALEGRIA", "FESTA", "COMEMORAR", 
       "ANIVERSÁRIO", "ESCOLA", "CADERNOS", "SORRISOS", 
-      "TURMA", "MÔNICA", "CELEBRAR", "DIA", "ESPECIAL"
+      "AMIGOS", "CELEBRAR", "DIA", "ESPECIAL"
     ],
-    "description": "Edição comemorativa oficial do caça-palavras da Turma da Mônica em celebração escolar."
+    "description": "Celebração divertida de aniversário com os colegas na sala de aula."
   },
   {
-    "id": "bairro_limoeiro",
-    "title": "O Bairro do Limoeiro",
-    "editionBadge": "NESTA EDIÇÃO: O BAIRRO DO LIMOEIRO",
-    "image": "assets/images/limoeiro_scene_1791902340682.jpg",
-    "sentence": "NO CORAÇÃO DO <strong class=\"target-word\" data-clean=\"BAIRRO\">BAIRRO</strong> DO <strong class=\"target-word\" data-clean=\"LIMOEIRO\">LIMOEIRO</strong>, OS <strong class=\"target-word\" data-clean=\"AMIGOS\">AMIGOS</strong> BRINCAM NA <strong class=\"target-word\" data-clean=\"PRACA\">PRAÇA</strong> SOB O <strong class=\"target-word\" data-clean=\"SOL\">SOL</strong>. CADA <strong class=\"target-word\" data-clean=\"RUA\">RUA</strong> GUARDA UMA <strong class=\"target-word\" data-clean=\"HISTORIA\">HISTÓRIA</strong> DIVERTIDA, COM MUITA <strong class=\"target-word\" data-clean=\"CORRIDA\">CORRIDA</strong>, <strong class=\"target-word\" data-clean=\"RISADAS\">RISADAS</strong> E O INSEPARÁVEL <strong class=\"target-word\" data-clean=\"COELHINHO\">COELHINHO</strong> AZUL.",
+    "id": "cenario_melancia",
+    "title": "A Hora da Melancia",
+    "editionBadge": "EDIÇÃO: O FESTIVAL DA MELANCIA",
+    "image": "assets/images/cenario_melancia.jpg",
+    "sentence": "UMA GRANDE FATIA DOCE DE <strong class=\"target-word\" data-clean=\"MELANCIA\">MELANCIA</strong> REPLETA DE <strong class=\"target-word\" data-clean=\"SABOR\">SABOR</strong> É A ATRAÇÃO DO DIA. NA <strong class=\"target-word\" data-clean=\"CESTA\">CESTA</strong> DE <strong class=\"target-word\" data-clean=\"PIQUENIQUE\">PIQUENIQUE</strong> TEM <strong class=\"target-word\" data-clean=\"BOLO\">BOLO</strong>, <strong class=\"target-word\" data-clean=\"SORVETE\">SORVETE</strong>, <strong class=\"target-word\" data-clean=\"PIPOCA\">PIPOCA</strong> E <strong class=\"target-word\" data-clean=\"FRUTAS\">FRUTAS</strong> FRESCAS PARA <strong class=\"target-word\" data-clean=\"DIVIDIR\">DIVIDIR</strong> COM TODA A <strong class=\"target-word\" data-clean=\"GALERA\">GALERA</strong>.",
     "words": [
-      "BAIRRO", "LIMOEIRO", "AMIGOS", "PRAÇA", "SOL", 
-      "RUA", "HISTÓRIA", "CORRIDA", "RISADAS", "COELHINHO"
+      "MELANCIA", "SABOR", "CESTA", "PIQUENIQUE", 
+      "BOLO", "SORVETE", "PIPOCA", "FRUTAS", "DIVIDIR", "GALERA"
     ],
-    "description": "As aventuras e brincadeiras nas ruas coloridas do bairro mais famoso do Brasil."
+    "description": "Um delicioso piquenique recheado de melancia, frutas e guloseimas no parque."
   },
   {
-    "id": "planos_cebolinha",
-    "title": "Planos Infalíveis do Cebolinha",
-    "editionBadge": "NESTA EDIÇÃO: OS PLANOS INFALÍVEIS",
-    "image": "assets/images/cebolinha_scene_1791902400074.jpg",
-    "sentence": "COM SEU <strong class=\"target-word\" data-clean=\"GIZ\">GIZ</strong> E UMA <strong class=\"target-word\" data-clean=\"LOUSA\">LOUSA</strong> REPLETA DE <strong class=\"target-word\" data-clean=\"IDEIAS\">IDEIAS</strong>, O <strong class=\"target-word\" data-clean=\"CEBOLINHA\">CEBOLINHA</strong> ARQUITETA UM <strong class=\"target-word\" data-clean=\"PLANO\">PLANO</strong> PARA CAPTURAR O <strong class=\"target-word\" data-clean=\"SANSAO\">SANSÃO</strong>. O FIEL <strong class=\"target-word\" data-clean=\"CASCAO\">CASCÃO</strong> AJUDA NA <strong class=\"target-word\" data-clean=\"ESTRATEGIA\">ESTRATÉGIA</strong>, TENTANDO ESCAPAR DO <strong class=\"target-word\" data-clean=\"BANHO\">BANHO</strong> E DA <strong class=\"target-word\" data-clean=\"FORCA\">FORÇA</strong> DA DONA DA RUA.",
+    "id": "quadro_planos",
+    "title": "O Quadro de Planos",
+    "editionBadge": "EDIÇÃO: O GRANDE PLANO SECRETO",
+    "image": "assets/images/quadro_planos.jpg",
+    "sentence": "COM SEU <strong class=\"target-word\" data-clean=\"GIZ\">GIZ</strong> E UMA <strong class=\"target-word\" data-clean=\"LOUSA\">LOUSA</strong> REPLETA DE <strong class=\"target-word\" data-clean=\"IDEIAS\">IDEIAS</strong>, DESENHA UM <strong class=\"target-word\" data-clean=\"PLANO\">PLANO</strong> CHEIO DE <strong class=\"target-word\" data-clean=\"MISTERIO\">MISTÉRIO</strong>. COM MUITA <strong class=\"target-word\" data-clean=\"ESTRATEGIA\">ESTRATÉGIA</strong> E <strong class=\"target-word\" data-clean=\"FOCO\">FOCO</strong>, CADA PASSO É TRAÇADO PARA VENCER O <strong class=\"target-word\" data-clean=\"DESAFIO\">DESAFIO</strong> E ALCANÇAR A <strong class=\"target-word\" data-clean=\"VITORIA\">VITÓRIA</strong>.",
     "words": [
-      "GIZ", "LOUSA", "IDEIAS", "CEBOLINHA", "PLANO", 
-      "SANSÃO", "CASCÃO", "ESTRATÉGIA", "BANHO", "FORÇA"
+      "GIZ", "LOUSA", "IDEIAS", "PLANO", 
+      "MISTÉRIO", "ESTRATÉGIA", "FOCO", "DESAFIO", "VITÓRIA"
     ],
-    "description": "Será que desta vez o plano mirabolante vai dar certo contra o coelhinho azul?"
+    "description": "Esquemas mirabolantes e estratégias traçadas no quadro de giz."
   },
   {
-    "id": "lanche_magali",
-    "title": "A Hora do Lanche da Magali",
-    "editionBadge": "NESTA EDIÇÃO: O FESTIVAL DE SABORES",
-    "image": "assets/images/magali_scene_1791902366113.jpg",
-    "sentence": "A <strong class=\"target-word\" data-clean=\"MAGALI\">MAGALI</strong> ADORA UMA FATIA DOCE DE <strong class=\"target-word\" data-clean=\"MELANCIA\">MELANCIA</strong> REPLETA DE <strong class=\"target-word\" data-clean=\"SABOR\">SABOR</strong>. NA SUA <strong class=\"target-word\" data-clean=\"CESTA\">CESTA</strong> DE <strong class=\"target-word\" data-clean=\"PIQUENIQUE\">PIQUENIQUE</strong> TEM <strong class=\"target-word\" data-clean=\"BOLO\">BOLO</strong>, <strong class=\"target-word\" data-clean=\"SORVETE\">SORVETE</strong>, <strong class=\"target-word\" data-clean=\"PIPOCA\">PIPOCA</strong> E <strong class=\"target-word\" data-clean=\"FRUTAS\">FRUTAS</strong> FRESCAS PARA TODOS OS <strong class=\"target-word\" data-clean=\"COLEGAS\">COLEGAS</strong>.",
+    "id": "bairro_amigos",
+    "title": "Brincadeiras no Bairro",
+    "editionBadge": "EDIÇÃO: BRINCADEIRAS NA PRAÇA",
+    "image": "assets/images/cenario_bairro.jpg",
+    "sentence": "NO CORAÇÃO DO <strong class=\"target-word\" data-clean=\"BAIRRO\">BAIRRO</strong>, OS <strong class=\"target-word\" data-clean=\"AMIGOS\">AMIGOS</strong> BRINCAM NA <strong class=\"target-word\" data-clean=\"PRACA\">PRAÇA</strong> SOB O <strong class=\"target-word\" data-clean=\"SOL\">SOL</strong>. CADA <strong class=\"target-word\" data-clean=\"RUA\">RUA</strong> GUARDA UMA <strong class=\"target-word\" data-clean=\"HISTORIA\">HISTÓRIA</strong> DIVERTIDA, COM MUITA <strong class=\"target-word\" data-clean=\"CORRIDA\">CORRIDA</strong>, <strong class=\"target-word\" data-clean=\"RISADAS\">RISADAS</strong> E PURA <strong class=\"target-word\" data-clean=\"ALEGRIA\">ALEGRIA</strong>.",
     "words": [
-      "MAGALI", "MELANCIA", "SABOR", "CESTA", "PIQUENIQUE", 
-      "BOLO", "SORVETE", "PIPOCA", "FRUTAS", "COLEGAS"
+      "BAIRRO", "AMIGOS", "PRAÇA", "SOL", 
+      "RUA", "HISTÓRIA", "CORRIDA", "RISADAS", "ALEGRIA"
     ],
-    "description": "Um festival apetitoso de guloseimas e frutas frescas com a gulosa mais querida."
+    "description": "Muita diversão, brincadeiras e corridas pelas ruas ensolaradas do bairro."
   }
 ]

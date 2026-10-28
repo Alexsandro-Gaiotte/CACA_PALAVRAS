@@ -1,8 +1,8 @@
-# JOGO CAÇA-PALAVRAS TURMA DA MÔNICA
+# JOGO CAÇA-PALAVRAS EDUCATIVO
 Parceria: Secretaria Municipal de Educação, Cultura, Inclusão, Ciência e Tecnologia de Saquarema & A.G DEV Solution
 
 ## 1. Visão Geral
-Jogo educativo de caça-palavras para web, totalmente interativo e responsivo, desenvolvido com base no layout da apostila/PDF da Turma da Mônica ("Aniversário na Escola").
+Jogo educativo de caça-palavras para web, totalmente interativo e responsivo, desenvolvido com base em temática lúdica e pedagógica de histórias infantis.
 
 ## 2. Decisão Técnica: JavaScript vs Python
 Avaliamos ambas as opções e **JavaScript (Web/Node.js)** é a melhor escolha técnica para este projeto:
@@ -11,14 +11,14 @@ Avaliamos ambas as opções e **JavaScript (Web/Node.js)** é a melhor escolha t
 - **Áudio Nativo Sem Latência:** Síntese de efeitos sonoros via Web Audio API (zero dependências ou falhas de carregamento de arquivos .mp3/.wav).
 - **Funcionamento Dual (Online/Offline):** Pode rodar conectado ao servidor Node.js ou 100% offline via abertura direta do arquivo `index.html` (com persistência local em `localStorage`).
 
-## 3. Melhorias Implementadas em Relação ao PDF Original
+## 3. Melhorias e Recursos do Jogo
 1. **Grade Dinâmica Procedural:** A cada nova partida, as palavras são reposicionadas em ângulos e coordenadas aleatórias com preenchimento de letras baseado na frequência do português.
 2. **História Interativa Integrada:** Conforme o aluno encontra cada palavra no caça-palavras, a palavra correspondente na história da edição se destaca em vermelho com animação de celebração.
 3. **Múltiplos Níveis & Temas:**
-   - *Aniversário na Escola* (Tema oficial da página 2 do PDF)
-   - *O Bairro do Limoeiro*
-   - *Os Planos Infalíveis do Cebolinha*
-   - *A Hora do Lanche da Magali*
+   - *Festa na Sala de Aula*
+   - *A Hora da Melancia*
+   - *O Quadro de Planos*
+   - *Brincadeiras no Bairro*
    - *Criador Personalizado* (Professores e alunos podem cadastrar histórias e palavras próprias)
 4. **Níveis de Dificuldade:** Fácil (10x10), Médio (12x12), Difícil (14x14).
 5. **Sistema de Dicas:** Destaca a primeira letra de uma palavra ainda não encontrada.
