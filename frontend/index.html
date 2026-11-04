@@ -74,8 +74,9 @@
     <header class="game-navbar">
       <div class="nav-brand">
         <img src="assets/logos/saquarema-logo.png" alt="Saquarema" class="nav-logo-saquarema">
-        <h1 class="nav-title">CAÇA-PALAVRAS</h1>
       </div>
+
+      <h1 class="nav-title">CAÇA-PALAVRAS</h1>
 
       <div class="nav-controls">
         <div class="stat-chip timer" title="Tempo da partida">
@@ -103,6 +104,10 @@
 
         <button id="btn-custom-modal" class="btn-comic" title="Criar caça-palavras personalizado">
           ✏️ Criar
+        </button>
+
+        <button id="btn-fullscreen" class="btn-comic" title="Alternar Tela Cheia (F11)">
+          <span>⛶</span> <span>Tela Cheia</span>
         </button>
 
         <button id="btn-back-menu" class="btn-comic btn-comic-danger" title="Voltar para a tela inicial">
@@ -251,7 +256,7 @@
           </select>
         </div>
 
-        <div style="max-height: 280px; overflow-y: auto; border: 2px solid #101c2c; border-radius: var(--border-radius-sm);">
+        <div class="leaderboard-table-wrapper">
           <table style="width: 100%; border-collapse: collapse; text-align: left;">
             <thead style="background: #f1f5f9; border-bottom: 2px solid #101c2c; font-size: 0.9rem;">
               <tr>

@@ -1,6 +1,7 @@
 /* ==========================================================================
-   CAÇA-PALAVRAS EDUCATIVO - DESIGN SYSTEM & ESTILOS
+   CAÇA-PALAVRAS EDUCATIVO - DESIGN SYSTEM & ESTILOS RESPONSIVOS
    Saquarema Prefeitura & A.G Dev Solution
+   Otimizado para telas de 20" a 80" (Telas Interativas Samsung 75' e Intelbras 80')
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');
@@ -38,6 +39,44 @@
   --font-ui: 'Inter', sans-serif;
 }
 
+/* ==========================================================================
+   ESCALONAMENTO DINÂMICO DE RESOLUÇÃO (20" A 80")
+   ========================================================================== */
+html {
+  font-size: 16px;
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+/* Telas 2K / QHD / 150% scaling (24" a 32" QHD e telas interativas com escala do Windows) */
+@media (min-width: 2200px) and (min-height: 1200px) {
+  html {
+    font-size: 20px;
+  }
+
+  :root {
+    --border-comic: 4px solid #101c2c;
+    --shadow-comic: 5px 5px 0px #101c2c;
+    --shadow-comic-lg: 8px 8px 0px #101c2c;
+  }
+}
+
+/* Telas Grandes 4K UHD (3840x2160) - Telas Interativas 75' (Samsung) e 80' (Intelbras) */
+@media (min-width: 3200px) and (min-height: 1700px) {
+  html {
+    font-size: 26px;
+  }
+
+  :root {
+    --border-comic: 5px solid #101c2c;
+    --border-radius-lg: 24px;
+    --border-radius-md: 16px;
+    --shadow-comic: 7px 7px 0px #101c2c;
+    --shadow-comic-sm: 4px 4px 0px #101c2c;
+    --shadow-comic-lg: 12px 12px 0px #101c2c;
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -55,6 +94,7 @@ body {
   flex-direction: column;
   overflow-x: hidden;
   position: relative;
+  overscroll-behavior: none;
 }
 
 /* ==========================================================================
@@ -70,8 +110,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1.5rem 2rem;
+  padding: clamp(1rem, 2.5vh, 2.5rem) clamp(1rem, 3vw, 3rem);
   transition: opacity 0.4s ease, visibility 0.4s ease;
+  overflow-y: auto;
 }
 
 .cover-screen.hidden {
@@ -87,7 +128,7 @@ body {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  background-size: 45px 45px;
+  background-size: clamp(35px, 3.5vw, 60px) clamp(35px, 3.5vw, 60px);
   pointer-events: none;
 }
 
@@ -96,34 +137,34 @@ body {
   z-index: 2;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  width: 100%;
 }
 
 .cover-logo-saquarema {
-  height: 100px;
+  height: clamp(65px, 9vh, 130px);
   width: auto;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
-  background: #ffffff00;
-  padding: 6px 12px;
-  border-radius: var(--border-radius-sm);
-  border: 0px solid #000;
+  background: rgb(17 83 131 / 14%);
+  padding: clamp(6px, 1vh, 12px) clamp(12px, 1.5vw, 22px);
+  border-radius: var(--border-radius-md);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
 .cover-center {
   position: relative;
   z-index: 2;
   text-align: center;
-  max-width: 600px;
+  max-width: min(92vw, 850px);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(0.5rem, 1.3vh, 1.4rem);
 }
 
 .title-tag-caca {
   font-family: var(--font-comic-title);
-  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  font-size: clamp(3.2rem, 8vw, 7.5rem);
   letter-spacing: 4px;
   color: #00d2ff;
   text-shadow:
@@ -137,7 +178,7 @@ body {
 
 .title-tag-palavras {
   font-family: var(--font-comic-title);
-  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-size: clamp(2.8rem, 7vw, 6.5rem);
   letter-spacing: 5px;
   color: #ff3344;
   text-shadow:
@@ -147,12 +188,12 @@ body {
     3px 3px 0 #000,
     6px 6px 0 rgba(0, 0, 0, 0.6);
   line-height: 0.95;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
 }
 
 .title-tag-turma {
   font-family: var(--font-comic-title);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.6rem, 3.2vw, 3.4rem);
   color: #ffffff;
   letter-spacing: 3px;
   text-shadow: 3px 3px 0 #000;
@@ -161,18 +202,18 @@ body {
 
 .title-logo-highlight-box {
   background: #ffffff;
-  border: 4px solid #101c2c;
+  border: var(--border-comic);
   box-shadow: var(--shadow-comic-lg);
-  border-radius: 16px;
-  padding: 8px 32px;
+  border-radius: clamp(12px, 1.5vw, 20px);
+  padding: clamp(6px, 1vh, 14px) clamp(22px, 3.5vw, 48px);
   display: inline-block;
-  margin-top: -6px;
+  margin-top: -4px;
   transform: rotate(-2deg);
 }
 
 .title-logo-highlight-text {
   font-family: var(--font-comic-title);
-  font-size: clamp(3rem, 6vw, 4.8rem);
+  font-size: clamp(2.6rem, 5.5vw, 5.2rem);
   letter-spacing: 2px;
   color: #ff002b;
   text-shadow:
@@ -186,14 +227,14 @@ body {
 
 /* Configurações Iniciais da Partida */
 .cover-options {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.95);
   border: var(--border-comic);
   box-shadow: var(--shadow-comic);
   border-radius: var(--border-radius-md);
-  padding: 1rem 1.5rem;
+  padding: clamp(0.6rem, 1.4vh, 1.25rem) clamp(1rem, 2vw, 2.2rem);
   display: flex;
-  gap: 1.5rem;
-  margin-top: 1rem;
+  gap: clamp(1rem, 2vw, 2.2rem);
+  margin-top: 0.5rem;
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
@@ -202,40 +243,45 @@ body {
 .cover-option-group {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   font-weight: 700;
+  font-size: clamp(0.95rem, 1.1vw, 1.3rem);
   color: var(--text-primary);
 }
 
 .cover-select {
   font-family: var(--font-comic-body);
+  font-size: clamp(0.9rem, 1vw, 1.2rem);
   font-weight: 600;
-  padding: 6px 12px;
+  padding: clamp(6px, 0.8vh, 10px) clamp(10px, 1vw, 16px);
   border-radius: var(--border-radius-sm);
   border: 2px solid #101c2c;
   background: #fff;
   cursor: pointer;
   outline: none;
+  min-height: 44px;
+  /* Touch-friendly para telas interativas */
 }
 
 /* Botão JOGAR estilo Pill do PDF */
 .btn-play-pill {
   font-family: var(--font-comic-title);
-  font-size: 2.4rem;
+  font-size: clamp(2rem, 3.4vw, 3.5rem);
   letter-spacing: 2px;
   color: #ff1a2e;
   background: #ffffff;
-  border: 4px solid #101c2c;
-  padding: 10px 60px;
+  border: var(--border-comic);
+  padding: clamp(8px, 1.4vh, 16px) clamp(44px, 5vw, 84px);
   border-radius: 9999px;
   box-shadow: 0 8px 0 #ff4b5a, var(--shadow-comic-lg);
   cursor: pointer;
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-top: 1.5rem;
+  margin-top: clamp(0.6rem, 1.5vh, 1.6rem);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 54px;
 }
 
 .btn-play-pill:hover {
@@ -254,16 +300,14 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  width: 100%;
 }
 
 .cover-logo-agdev {
-  height: 110px;
+  height: clamp(65px, 9vh, 130px);
   width: auto;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-  background: #ffffff00;
   padding: 4px 10px;
-  border-radius: var(--border-radius-sm);
-  border: 0px solid #000;
 }
 
 /* ==========================================================================
@@ -277,68 +321,76 @@ body {
     radial-gradient(circle at 10% 20%, rgba(27, 117, 188, 0.2) 0%, transparent 50%),
     linear-gradient(180deg, #091726 0%, #0d2847 100%);
   position: relative;
-  padding-bottom: 0rem;
 }
 
-/* Barra de Navegação Superior */
+/* Barra de Navegação Superior (Grid de 3 Colunas Perfeitamente Balanceado) */
 .game-navbar {
-  background: rgb(19 45 81 / 95%);
+  background: rgba(19, 45, 81, 0.96);
   border-bottom: var(--border-comic);
-  padding: -0.25rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
+  padding: clamp(0.4rem, 0.9vh, 0.75rem) clamp(1rem, 2vw, 2.5rem);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   position: sticky;
   top: 0;
   z-index: 50;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-self: start;
 }
 
 .nav-logo-saquarema {
-  position: relative;
-  left: 13px;
-  height: 72px;
+  height: clamp(46px, 5.5vh, 76px);
   width: auto;
+  background: rgb(255 255 255 / 0%);
+  padding: 4px 10px;
+  border-radius: var(--border-radius-sm);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
 }
 
 .nav-title {
-  height: 55px;
-  position: relative;
-  left: 370px;
+  justify-self: center;
+  text-align: center;
   font-family: var(--font-comic-title);
-  font-size: 3.6rem;
+  font-size: clamp(2rem, 3.2vw, 3.8rem);
   color: var(--comic-red);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  text-shadow:
+    -2px -2px 0 #fff,
+    2px -2px 0 #fff,
+    -2px 2px 0 #fff,
+    2px 2px 0 #fff,
+    4px 4px 0 #101c2c;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .nav-controls {
-  position: relative;
-  left: -11px;
+  justify-self: end;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: clamp(0.35rem, 0.6vw, 0.8rem);
   flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .stat-chip {
   background: #f1f5f9;
   border: 2px solid #101c2c;
   border-radius: var(--border-radius-sm);
-  padding: 5px 12px;
+  padding: clamp(5px, 0.7vh, 9px) clamp(8px, 0.9vw, 15px);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 0.95vw, 1.15rem);
   display: flex;
   align-items: center;
   gap: 0.4rem;
   box-shadow: var(--shadow-comic-sm);
+  white-space: nowrap;
 }
 
 .stat-chip.timer {
@@ -354,8 +406,8 @@ body {
 .btn-comic {
   font-family: var(--font-comic-body);
   font-weight: 700;
-  font-size: 0.95rem;
-  padding: 7px 14px;
+  font-size: clamp(0.82rem, 0.9vw, 1.1rem);
+  padding: clamp(6px, 0.8vh, 10px) clamp(10px, 1vw, 16px);
   border: 2px solid #101c2c;
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-comic-sm);
@@ -363,9 +415,14 @@ body {
   transition: all 0.1s ease;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
   background: #ffffff;
   color: var(--text-primary);
+  min-height: 42px;
+  /* Confortável para dedos em telas interativas */
+  user-select: none;
+  white-space: nowrap;
 }
 
 .btn-comic:hover {
@@ -388,16 +445,17 @@ body {
   color: #ffffff;
 }
 
-/* Área de Jogo em 2 Colunas */
+/* Área de Jogo em 2 Colunas Fluidas */
 .game-main {
-  max-width: 1300px;
-  margin: 1.5rem auto;
-  padding: 0 1.5rem;
+  max-width: min(96vw, 3200px);
+  margin: clamp(0.6rem, 1.4vh, 1.6rem) auto;
+  padding: 0 clamp(0.75rem, 1.5vw, 2rem);
   width: 100%;
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
-  gap: 2rem;
+  gap: clamp(1rem, 1.8vw, 2.4rem);
   align-items: start;
+  flex: 1;
 }
 
 /* ==========================================================================
@@ -408,10 +466,11 @@ body {
   border: var(--border-comic);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-comic-lg);
-  padding: 1.5rem;
+  padding: clamp(0.9rem, 1.5vh, 1.8rem);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: clamp(0.6rem, 1vh, 1.2rem);
+  justify-content: space-between;
 }
 
 .board-header {
@@ -419,48 +478,53 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px dashed #cbd5e1;
-  padding-bottom: 0.75rem;
+  padding-bottom: clamp(0.4rem, 0.7vh, 0.75rem);
 }
 
 .board-theme-title {
   font-family: var(--font-comic-title);
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 2vw, 2.6rem);
   letter-spacing: 1px;
   color: var(--comic-blue);
 }
 
 .board-difficulty-badge {
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 0.9vw, 1.1rem);
   font-weight: 700;
   text-transform: uppercase;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: 999px;
   border: 2px solid #101c2c;
   background: #dcfce7;
   color: #166534;
 }
 
-/* O Grid de Letras */
+/* O Grid de Letras Fluido e Amplo para Telas Touch */
 .grid-container {
   display: grid;
-  gap: 4px;
+  grid-auto-rows: 1fr;
+  gap: clamp(3px, 0.35vw, 8px);
   background: #0f2c4a;
-  padding: 10px;
-  border: 3px solid #101c2c;
+  padding: clamp(6px, 0.8vw, 14px);
+  border: var(--border-comic);
   border-radius: var(--border-radius-md);
   margin: 0 auto;
   width: 100%;
-  max-width: 580px;
+  max-width: min(100%, calc(100vh - 20rem), 62vh, 1050px);
   aspect-ratio: 1 / 1;
   touch-action: none;
-  /* Essencial para drag em telas touch */
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
 }
 
 .grid-cell {
+  min-width: 0;
+  min-height: 0;
   background: #ffffff;
-  border-radius: 6px;
+  border-radius: clamp(4px, 0.5vw, 10px);
   font-family: var(--font-comic-title);
-  font-size: clamp(1.1rem, 2.8vw, 1.7rem);
+  font-size: clamp(1.1rem, min(3.4vh, 2vw), 2.4rem);
   font-weight: 900;
   color: #101c2c;
   display: flex;
@@ -470,6 +534,10 @@ body {
   transition: background-color 0.1s ease, transform 0.1s ease;
   position: relative;
   border: 1px solid #cbd5e1;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  line-height: 1;
 }
 
 .grid-cell:hover {
@@ -480,7 +548,7 @@ body {
   background-color: #38bdf8 !important;
   color: #ffffff;
   transform: scale(0.95);
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 .grid-cell.found {
@@ -504,7 +572,7 @@ body {
 
   100% {
     transform: scale(1.1);
-    box-shadow: 0 0 12px rgba(234, 179, 8, 0.9);
+    box-shadow: 0 0 14px rgba(234, 179, 8, 0.9);
   }
 }
 
@@ -512,7 +580,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 0.5rem;
+  padding-top: clamp(0.3rem, 0.6vh, 0.75rem);
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .board-hint-btn {
@@ -526,7 +596,7 @@ body {
 .story-card {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: clamp(0.7rem, 1.3vh, 1.5rem);
 }
 
 /* Card da Ilustração da Turma */
@@ -543,10 +613,10 @@ body {
   background: var(--comic-green);
   color: #ffffff;
   font-family: var(--font-comic-title);
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 1.4vw, 1.8rem);
   letter-spacing: 1px;
-  padding: 8px 16px;
-  border-bottom: 3px solid #101c2c;
+  padding: clamp(6px, 0.8vh, 12px) clamp(12px, 1.2vw, 22px);
+  border-bottom: var(--border-comic);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -555,6 +625,7 @@ body {
 .scene-image-wrapper {
   width: 100%;
   aspect-ratio: 16 / 9;
+  max-height: clamp(130px, 22vh, 380px);
   background: #e2e8f0;
   position: relative;
   overflow: hidden;
@@ -571,17 +642,16 @@ body {
   transform: scale(1.02);
 }
 
-/* Caixa de Texto do Cenário (Como no PDF) */
 /* Caixa de Texto do Cenário (História Integrada) */
 .sentence-box {
   background: #ffffff;
   border: var(--border-comic);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-comic-lg);
-  padding: 1.35rem 1.6rem;
+  padding: clamp(0.8rem, 1.4vh, 1.8rem) clamp(1rem, 1.5vw, 2rem);
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: clamp(0.5rem, 0.9vh, 1.1rem);
 }
 
 .sentence-header {
@@ -589,7 +659,7 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px dashed #cbd5e1;
-  padding-bottom: 0.65rem;
+  padding-bottom: clamp(0.35rem, 0.6vh, 0.75rem);
 }
 
 .sentence-title-group {
@@ -599,12 +669,12 @@ body {
 }
 
 .sentence-icon {
-  font-size: 1.4rem;
+  font-size: clamp(1.2rem, 1.5vw, 1.8rem);
 }
 
 .sentence-title {
   font-family: var(--font-comic-title);
-  font-size: 1.45rem;
+  font-size: clamp(1.2rem, 1.6vw, 2.1rem);
   color: var(--comic-blue);
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -612,12 +682,12 @@ body {
 
 .words-counter-badge {
   font-family: var(--font-comic-title);
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 1.2vw, 1.5rem);
   letter-spacing: 0.5px;
   background: #fef08a;
   color: #101c2c;
   border: 2px solid #101c2c;
-  box-shadow: 2px 2px 0 #101c2c;
+  box-shadow: var(--shadow-comic-sm);
   padding: 4px 14px;
   border-radius: 999px;
   display: flex;
@@ -630,18 +700,18 @@ body {
   background: #eff6ff;
   border: 2px dashed #0077c8;
   border-radius: var(--border-radius-sm);
-  padding: 8px 12px;
+  padding: clamp(6px, 0.8vh, 12px) clamp(8px, 1vw, 16px);
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 0.95vw, 1.2rem);
   font-weight: 600;
   color: #1e3a8a;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 .sentence-instruction-banner .instruction-icon {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   flex-shrink: 0;
 }
 
@@ -652,8 +722,8 @@ body {
 }
 
 .sentence-content {
-  font-size: 1.18rem;
-  line-height: 1.75;
+  font-size: clamp(1.05rem, 1.22vw, 1.65rem);
+  line-height: 1.65;
   font-weight: 500;
   color: #1e293b;
   letter-spacing: 0.2px;
@@ -726,73 +796,14 @@ body {
   }
 }
 
-/* Lista de Palavras para Encontrar */
-.words-card {
-  background: #ffffff;
-  border: var(--border-comic);
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-comic-lg);
-  padding: 1.25rem 1.5rem;
-}
-
-.words-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.words-title {
-  font-family: var(--font-comic-title);
-  font-size: 1.3rem;
-  color: var(--comic-red);
-  letter-spacing: 1px;
-}
-
-.words-counter {
-  font-size: 0.95rem;
-  font-weight: 700;
-  background: #f1f5f9;
-  border: 2px solid #101c2c;
-  padding: 3px 8px;
-  border-radius: 999px;
-}
-
-.words-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
-.word-tag {
-  font-size: 0.95rem;
-  font-weight: 700;
-  background: #f8fafc;
-  border: 2px solid #cbd5e1;
-  padding: 6px 12px;
-  border-radius: var(--border-radius-sm);
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: all 0.2s ease;
-}
-
-.word-tag.found {
-  background: #dcfce7;
-  border-color: #166534;
-  color: #166534;
-  text-decoration: line-through;
-  opacity: 0.85;
-}
-
 /* ==========================================================================
    MODAIS (VITÓRIA, RANKING, PERSONALIZADO, REGRAS)
    ========================================================================== */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 22, 38, 0.75);
-  backdrop-filter: blur(4px);
+  background: rgba(10, 22, 38, 0.78);
+  backdrop-filter: blur(5px);
   z-index: 200;
   display: flex;
   align-items: center;
@@ -810,12 +821,13 @@ body {
 
 .modal-card {
   background: #ffffff;
-  border: 4px solid #101c2c;
+  border: var(--border-comic);
   border-radius: var(--border-radius-lg);
-  box-shadow: 8px 8px 0px #101c2c;
+  box-shadow: var(--shadow-comic-lg);
   width: 100%;
-  max-width: 520px;
-  overflow: hidden;
+  max-width: min(92vw, 680px);
+  max-height: 90vh;
+  overflow-y: auto;
   transform: translateY(20px) scale(0.95);
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -827,11 +839,11 @@ body {
 .modal-header {
   background: var(--comic-blue);
   color: #ffffff;
-  padding: 1.25rem 1.5rem;
+  padding: clamp(0.9rem, 1.4vh, 1.4rem) clamp(1rem, 1.8vw, 1.8rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 3px solid #101c2c;
+  border-bottom: var(--border-comic);
 }
 
 .modal-header.victory {
@@ -841,25 +853,26 @@ body {
 
 .modal-title {
   font-family: var(--font-comic-title);
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 2vw, 2.3rem);
   letter-spacing: 1px;
 }
 
 .btn-close-modal {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 900;
   color: inherit;
   cursor: pointer;
   line-height: 1;
+  padding: 4px;
 }
 
 .modal-body {
-  padding: 1.5rem;
+  padding: clamp(1rem, 1.8vh, 1.8rem);
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: clamp(0.8rem, 1.4vh, 1.4rem);
 }
 
 /* Estatísticas da Vitória */
@@ -873,19 +886,19 @@ body {
   background: #f8fafc;
   border: 2px solid #101c2c;
   border-radius: var(--border-radius-sm);
-  padding: 0.75rem;
+  padding: clamp(0.6rem, 1vh, 1rem);
   text-align: center;
 }
 
 .victory-stat-label {
-  font-size: 0.85rem;
+  font-size: clamp(0.8rem, 0.9vw, 1.1rem);
   font-weight: 600;
   color: var(--text-muted);
 }
 
 .victory-stat-val {
   font-family: var(--font-comic-title);
-  font-size: 2rem;
+  font-size: clamp(1.8rem, 2.5vw, 3rem);
   color: var(--comic-red);
 }
 
@@ -897,14 +910,14 @@ body {
 
 .form-label {
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: clamp(0.9rem, 1vw, 1.2rem);
 }
 
 .form-input,
 .form-textarea {
   font-family: var(--font-comic-body);
-  font-size: 1rem;
-  padding: 8px 12px;
+  font-size: clamp(0.95rem, 1vw, 1.2rem);
+  padding: 10px 14px;
   border: 2px solid #101c2c;
   border-radius: var(--border-radius-sm);
   outline: none;
@@ -980,7 +993,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   line-height: 1;
   transition: transform 0.1s ease;
 }
@@ -994,6 +1007,14 @@ body {
   gap: 0.75rem;
   justify-content: flex-end;
   margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.leaderboard-table-wrapper {
+  max-height: clamp(240px, 40vh, 500px);
+  overflow-y: auto;
+  border: 2px solid #101c2c;
+  border-radius: var(--border-radius-sm);
 }
 
 /* Canvas do Confete */
@@ -1009,71 +1030,224 @@ body {
    ========================================================================== */
 .game-footer {
   margin-top: auto;
-  border-top: 2px solid rgba(255, 255, 255, 0.1);
-  padding: 0rem 1.5rem;
-  background: rgba(8, 20, 36, 0.95);
+  border-top: 2px solid rgba(255, 255, 255, 0.12);
+  padding: clamp(0.35rem, 0.8vh, 0.8rem) clamp(1rem, 2vw, 2.5rem);
+  background: rgba(8, 20, 36, 0.96);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .footer-credits {
-  color: #94a3b8;
-  font-size: 0.9rem;
+  color: #cbd5e1;
+  font-size: clamp(0.82rem, 0.95vw, 1.15rem);
+}
+
+.footer-credits strong {
+  color: #ffffff;
 }
 
 .footer-logo-agdev {
-  height: 80px;
+  height: clamp(45px, 6vh, 85px);
   width: auto;
   background: #ffffff00;
   padding: 4px 8px;
-  border-radius: 4px;
-  border: 0px solid #000;
 }
 
 /* ==========================================================================
-   RESPONSIVIDADE (TABLETS E CELULARES)
+   RESPONSIVIDADE E ADAPTAÇÃO A TELAS ESPECIAIS (20" A 80", LAPTOPS, TABLETS)
    ========================================================================== */
-@media (max-width: 960px) {
+
+/* Telas com Altura Reduzida em Modo Paisagem (Ex: Laptops 1366x768 ou 1280x720) */
+@media (max-height: 820px) and (min-width: 901px) {
+  .game-navbar {
+    padding: 0.35rem 1.2rem;
+    gap: 0.5rem;
+  }
+
+  .nav-logo-saquarema {
+    height: 44px;
+    padding: 2px 8px;
+  }
+
+  .nav-title {
+    font-size: 2.3rem;
+  }
+
+  .stat-chip {
+    padding: 4px 8px;
+    font-size: 0.85rem;
+  }
+
+  .btn-comic {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    min-height: 36px;
+  }
+
+  .game-main {
+    margin: 0.4rem auto;
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+
+  .board-card,
+  .sentence-box,
+  .illustration-card {
+    padding: 0.8rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .board-header,
+  .sentence-header {
+    padding-bottom: 0.35rem;
+  }
+
+  .board-theme-title {
+    font-size: 1.4rem;
+  }
+
+  .scene-image-wrapper {
+    max-height: 140px;
+  }
+
+  .grid-container {
+    max-width: min(100%, calc(100vh - 210px));
+  }
+
+  .sentence-instruction-banner {
+    padding: 4px 8px;
+    font-size: 0.85rem;
+  }
+
+  .sentence-content {
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+
+  .game-footer {
+    padding: 0.25rem 1.2rem;
+  }
+
+  .footer-logo-agdev {
+    height: 42px;
+  }
+}
+
+/* Telas Médias / Laptops Compactos: Reorganização da Navbar para evitar colisão */
+@media (max-width: 1280px) and (min-width: 901px) {
+  .game-navbar {
+    grid-template-columns: auto 1fr auto;
+    gap: 0.6rem;
+    padding: 0.4rem 1rem;
+  }
+
+  .nav-title {
+    font-size: 2.4rem;
+  }
+
+  .btn-comic {
+    padding: 5px 9px;
+    font-size: 0.82rem;
+  }
+}
+
+/* Telas Médias / Tablets em Paisagem (Menor que 1100px) */
+@media (max-width: 1100px) {
+  .game-navbar {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.5rem;
+  }
+
+  .nav-title {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: center;
+  }
+
+  .nav-brand {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .nav-controls {
+    grid-row: 2;
+    grid-column: 2;
+  }
+
+  .game-main {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 1.2rem;
+  }
+}
+
+/* Tablets em Retrato ou Telas Estreitas */
+@media (max-width: 900px) {
   .game-main {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
   .grid-container {
-    max-width: 480px;
+    max-width: min(100%, 540px);
+  }
+
+  .scene-image-wrapper {
+    max-height: 240px;
   }
 }
 
+/* Celulares e Telas Muito Pequenas */
 @media (max-width: 640px) {
   .game-navbar {
-    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.6rem 0.8rem;
+    gap: 0.6rem;
+  }
+
+  .nav-title {
+    font-size: 2.2rem;
   }
 
   .nav-controls {
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 0.4rem;
   }
 
   .board-card,
   .sentence-box,
-  .words-card,
   .illustration-card {
-    padding: 1rem;
+    padding: 0.85rem;
+  }
+
+  .board-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
   }
 
   .title-tag-caca {
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
 
   .title-tag-palavras {
-    font-size: 2.6rem;
+    font-size: 2.4rem;
   }
 
   .btn-play-pill {
     padding: 8px 36px;
     font-size: 1.8rem;
+  }
+
+  .game-footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
   }
 }

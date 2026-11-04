@@ -108,6 +108,7 @@
         btnOpenLeaderboard: document.getElementById('btn-open-leaderboard'),
         btnCustomModal: document.getElementById('btn-custom-modal'),
         btnBackMenu: document.getElementById('btn-back-menu'),
+        btnFullscreen: document.getElementById('btn-fullscreen'),
 
         boardThemeTitle: document.getElementById('board-theme-title'),
         boardDifficultyBadge: document.getElementById('board-difficulty-badge'),
@@ -166,6 +167,12 @@
       });
 
       // Voltar ao Menu Inicial
+      if (this.dom.btnFullscreen) {
+        this.dom.btnFullscreen.addEventListener('click', () => this.toggleFullscreen());
+        document.addEventListener('fullscreenchange', () => this.updateFullscreenButton());
+        document.addEventListener('webkitfullscreenchange', () => this.updateFullscreenButton());
+      }
+
       this.dom.btnBackMenu.addEventListener('click', () => {
         this.stopTimer();
         this.dom.coverScreen.classList.remove('hidden');
@@ -409,6 +416,34 @@
       this.renderWordsList();
       this.updateProgressCounter();
       this.startTimer();
+    }
+
+    toggleFullscreen() {
+      try {
+        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+          const el = document.documentElement;
+          if (el.requestFullscreen) {
+            el.requestFullscreen().catch(() => {});
+          } else if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+        }
+      } catch (err) {}
+    }
+
+    updateFullscreenButton() {
+      if (!this.dom.btnFullscreen) return;
+      const isFull = !!(document.fullscreenElement || document.webkitFullscreenElement);
+      this.dom.btnFullscreen.innerHTML = isFull 
+        ? '<span>🗗</span> <span>Tela Normal</span>' 
+        : '<span>⛶</span> <span>Tela Cheia</span>';
+      this.dom.btnFullscreen.title = isFull ? 'Sair da Tela Cheia (F11)' : 'Alternar Tela Cheia (F11)';
     }
 
     renderGrid() {
