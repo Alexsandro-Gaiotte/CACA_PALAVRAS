@@ -281,6 +281,60 @@
 
 
   <!-- ====================================================================
+       MODAL DE PIN DE SEGURANÇA (ACESSO DO PROFESSOR / CRIADOR)
+       ==================================================================== -->
+  <div id="pin-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="pin-modal-title">
+    <div class="modal-card modal-card-pin">
+      <div class="modal-header">
+        <h3 id="pin-modal-title" class="modal-title">🔒 ACESSO DO PROFESSOR</h3>
+        <button class="btn-close-modal" id="btn-close-pin" aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body pin-modal-body">
+        <p class="pin-instructions">
+          Área restrita para criação e configurações pedagógicas.<br>
+          Digite o <strong>PIN de 4 dígitos</strong> para continuar:
+        </p>
+
+        <!-- Indicador dos 4 Dígitos -->
+        <div class="pin-display" id="pin-display" aria-label="PIN digitado">
+          <div class="pin-digit-box" data-index="0"></div>
+          <div class="pin-digit-box" data-index="1"></div>
+          <div class="pin-digit-box" data-index="2"></div>
+          <div class="pin-digit-box" data-index="3"></div>
+        </div>
+
+        <!-- Input para acessibilidade e digitação via teclado físico -->
+        <input type="password" id="pin-hidden-input" maxlength="4" inputmode="numeric" pattern="[0-9]*" class="pin-hidden-input" aria-label="PIN de 4 dígitos" autocomplete="off">
+
+        <div id="pin-error-msg" class="pin-error-msg" style="display: none;">
+          ❌ PIN incorreto! Tente novamente.
+        </div>
+
+        <!-- Teclado Numérico Touch (Otimizado para Telas Interativas e Touchscreens) -->
+        <div class="pin-keypad">
+          <button type="button" class="pin-key" data-digit="1">1</button>
+          <button type="button" class="pin-key" data-digit="2">2</button>
+          <button type="button" class="pin-key" data-digit="3">3</button>
+          <button type="button" class="pin-key" data-digit="4">4</button>
+          <button type="button" class="pin-key" data-digit="5">5</button>
+          <button type="button" class="pin-key" data-digit="6">6</button>
+          <button type="button" class="pin-key" data-digit="7">7</button>
+          <button type="button" class="pin-key" data-digit="8">8</button>
+          <button type="button" class="pin-key" data-digit="9">9</button>
+          <button type="button" class="pin-key pin-key-action" id="btn-pin-clear" title="Limpar">C</button>
+          <button type="button" class="pin-key" data-digit="0">0</button>
+          <button type="button" class="pin-key pin-key-action" id="btn-pin-backspace" title="Apagar">⌫</button>
+        </div>
+
+        <div class="modal-actions" style="margin-top: 0.5rem;">
+          <button id="btn-pin-cancel" class="btn-comic" type="button">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ====================================================================
        MODAL DE CRIADOR PERSONALIZADO (PARA PROFESSORES / ALUNOS)
        ==================================================================== -->
   <div id="custom-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="custom-title">

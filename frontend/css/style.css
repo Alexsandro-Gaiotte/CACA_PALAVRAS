@@ -540,28 +540,39 @@ body {
   line-height: 1;
 }
 
-.grid-cell:hover {
+.grid-cell:hover:not(.found):not(.selected) {
   background-color: #fef08a;
 }
 
 .grid-cell.selected {
   background-color: #38bdf8 !important;
-  color: #ffffff;
+  background-image: none !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
   transform: scale(0.95);
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5) !important;
+  z-index: 5;
 }
 
 .grid-cell.found {
-  background-color: #bbf7d0 !important;
-  color: #166534;
   font-weight: 900;
-  border-color: #22c55e;
+  animation: cellPop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1;
+}
+
+@keyframes cellPop {
+  0% { transform: scale(0.9); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
 }
 
 .grid-cell.hint {
   animation: hintPulse 1s infinite alternate;
   background-color: #fde047 !important;
-  color: #854d0e;
+  background-image: none !important;
+  color: #854d0e !important;
+  border-color: #eab308 !important;
+  z-index: 4;
 }
 
 @keyframes hintPulse {
@@ -748,13 +759,13 @@ body {
   border-bottom-color: #0077c8;
 }
 
-/* Palavra Encontrada: FICA EM VERMELHO NO TEXTO COM ANIMAÇÃO! */
+/* Palavra Encontrada: Destacada com a cor da palavra e animação */
 .sentence-content .target-word.found-word {
-  color: #e52525 !important;
   font-weight: 900 !important;
-  background: rgba(229, 37, 37, 0.14) !important;
-  border-bottom: 3px solid #e52525 !important;
-  box-shadow: 0 2px 8px rgba(229, 37, 37, 0.25);
+  border-radius: 4px;
+  padding: 1px 6px;
+  border-bottom-width: 3px !important;
+  border-bottom-style: solid !important;
   animation: wordFoundCelebration 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
@@ -772,9 +783,7 @@ body {
   }
 
   50% {
-    transform: scale(1.18) translateY(-2px);
-    background: #ff2a3b !important;
-    color: #ffffff !important;
+    transform: scale(1.15) translateY(-2px);
   }
 
   100% {
@@ -1015,6 +1024,154 @@ body {
   overflow-y: auto;
   border: 2px solid #101c2c;
   border-radius: var(--border-radius-sm);
+}
+
+/* ==========================================================================
+   MODAL DE PIN DE SEGURANÇA (ACESSO DO PROFESSOR)
+   ========================================================================== */
+.modal-card-pin {
+  max-width: min(92vw, 380px);
+  text-align: center;
+}
+
+.pin-modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: clamp(1rem, 1.8vh, 1.6rem);
+}
+
+.pin-instructions {
+  font-size: clamp(0.9rem, 1vw, 1.1rem);
+  color: var(--text-primary);
+  line-height: 1.45;
+  text-align: center;
+}
+
+.pin-instructions strong {
+  color: var(--comic-blue);
+}
+
+.pin-display {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 6px 0;
+  transition: transform 0.2s ease;
+}
+
+.pin-display.shake {
+  animation: pinShake 0.45s ease-in-out;
+}
+
+@keyframes pinShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-10px); }
+  40%, 80% { transform: translateX(10px); }
+}
+
+.pin-digit-box {
+  width: clamp(48px, 5.5vw, 60px);
+  height: clamp(52px, 6vh, 64px);
+  border: 3px solid #101c2c;
+  border-radius: var(--border-radius-sm);
+  background: #ffffff;
+  box-shadow: var(--shadow-comic-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.8rem, 2.2vw, 2.4rem);
+  color: #101c2c;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.pin-digit-box.filled {
+  background: #eff6ff;
+  border-color: #0077c8;
+  color: #0077c8;
+  transform: scale(1.05);
+}
+
+.pin-digit-box.success {
+  background: #dcfce7;
+  border-color: #16a34a;
+  color: #16a34a;
+}
+
+.pin-digit-box.error {
+  background: #fee2e2;
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+.pin-hidden-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.pin-error-msg {
+  font-size: clamp(0.9rem, 1vw, 1.1rem);
+  font-weight: 700;
+  color: var(--comic-red);
+  background: #fee2e2;
+  border: 1px solid #f87171;
+  padding: 6px 14px;
+  border-radius: var(--border-radius-sm);
+  animation: cellPop 0.25s ease;
+}
+
+.pin-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(8px, 1vh, 12px);
+  width: 100%;
+  max-width: 270px;
+  margin-top: 4px;
+}
+
+.pin-key {
+  font-family: var(--font-comic-title);
+  font-size: clamp(1.6rem, 2vw, 2.2rem);
+  color: #101c2c;
+  background: #ffffff;
+  border: var(--border-comic);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-comic-sm);
+  min-height: clamp(48px, 5.8vh, 58px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.pin-key:hover {
+  background: #f1f5f9;
+  transform: translateY(-2px);
+}
+
+.pin-key:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.pin-key-action {
+  font-family: var(--font-comic-body);
+  font-weight: 800;
+  font-size: clamp(1.2rem, 1.5vw, 1.6rem);
+  background: #f8fafc;
+  color: #475569;
+}
+
+.pin-key-action:hover {
+  background: #e2e8f0;
 }
 
 /* Canvas do Confete */

@@ -60,6 +60,29 @@
     hard: 14
   };
 
+  // PIN de segurança para acesso à criação personalizada (Configuração Pedagógica)
+  const ADMIN_PIN = '1269';
+
+  // Paleta de cores vibrantes, lúdicas e bem contrastantes para cada palavra encontrada
+  const WORD_COLORS = [
+    { name: 'Azul Celeste', bg: '#7dd3fc', border: '#0284c7', text: '#0b192c', storyBg: 'rgba(2, 132, 199, 0.16)', storyText: '#0369a1', glow: 'rgba(2, 132, 199, 0.35)' },
+    { name: 'Laranja Vivo', bg: '#fdba74', border: '#ea580c', text: '#0b192c', storyBg: 'rgba(234, 88, 12, 0.16)', storyText: '#c2410c', glow: 'rgba(234, 88, 12, 0.35)' },
+    { name: 'Rosa Chiclete', bg: '#f9a8d4', border: '#db2777', text: '#0b192c', storyBg: 'rgba(219, 39, 119, 0.16)', storyText: '#be185d', glow: 'rgba(219, 39, 119, 0.35)' },
+    { name: 'Verde Lima', bg: '#bef264', border: '#65a30d', text: '#0b192c', storyBg: 'rgba(101, 163, 13, 0.18)', storyText: '#4d7c0f', glow: 'rgba(101, 163, 13, 0.35)' },
+    { name: 'Roxo Uva', bg: '#d8b4fe', border: '#9333ea', text: '#0b192c', storyBg: 'rgba(147, 51, 234, 0.16)', storyText: '#7e22ce', glow: 'rgba(147, 51, 234, 0.35)' },
+    { name: 'Amarelo Girassol', bg: '#fde047', border: '#ca8a04', text: '#0b192c', storyBg: 'rgba(202, 138, 4, 0.18)', storyText: '#a16207', glow: 'rgba(202, 138, 4, 0.35)' },
+    { name: 'Vermelho Coral', bg: '#fca5a5', border: '#dc2626', text: '#0b192c', storyBg: 'rgba(220, 38, 38, 0.16)', storyText: '#b91c1c', glow: 'rgba(220, 38, 38, 0.35)' },
+    { name: 'Turquesa Oceano', bg: '#67e8f9', border: '#0891b2', text: '#0b192c', storyBg: 'rgba(8, 145, 178, 0.16)', storyText: '#0e7490', glow: 'rgba(8, 145, 178, 0.35)' },
+    { name: 'Azul Índigo', bg: '#a5b4fc', border: '#4f46e5', text: '#0b192c', storyBg: 'rgba(79, 70, 229, 0.16)', storyText: '#4338ca', glow: 'rgba(79, 70, 229, 0.35)' },
+    { name: 'Esmeralda', bg: '#6ee7b7', border: '#059669', text: '#0b192c', storyBg: 'rgba(5, 150, 105, 0.16)', storyText: '#047857', glow: 'rgba(5, 150, 105, 0.35)' },
+    { name: 'Pêssego Quente', bg: '#fed7aa', border: '#f97316', text: '#0b192c', storyBg: 'rgba(249, 115, 22, 0.16)', storyText: '#c2410c', glow: 'rgba(249, 115, 22, 0.35)' },
+    { name: 'Fúcsia Magenta', bg: '#f0abfc', border: '#c026d3', text: '#0b192c', storyBg: 'rgba(192, 38, 211, 0.16)', storyText: '#a21caf', glow: 'rgba(192, 38, 211, 0.35)' },
+    { name: 'Verde Menta', bg: '#a7f3d0', border: '#10b981', text: '#0b192c', storyBg: 'rgba(16, 185, 129, 0.16)', storyText: '#047857', glow: 'rgba(16, 185, 129, 0.35)' },
+    { name: 'Violeta Profundo', bg: '#c4b5fd', border: '#7c3aed', text: '#0b192c', storyBg: 'rgba(124, 58, 237, 0.16)', storyText: '#6d28d9', glow: 'rgba(124, 58, 237, 0.35)' },
+    { name: 'Azul Petróleo', bg: '#5eead4', border: '#0d9488', text: '#0b192c', storyBg: 'rgba(13, 148, 136, 0.16)', storyText: '#0f766e', glow: 'rgba(13, 148, 136, 0.35)' },
+    { name: 'Rosa Carmim', bg: '#fecdd3', border: '#e11d48', text: '#0b192c', storyBg: 'rgba(225, 29, 72, 0.16)', storyText: '#be123c', glow: 'rgba(225, 29, 72, 0.35)' }
+  ];
+
   class WordSearchGame {
     constructor() {
       this.themes = FALLBACK_THEMES;
@@ -73,6 +96,8 @@
       this.gridData = [];
       this.wordsToFind = [];
       this.foundWords = new Set();
+      this.cellColorsMap = new Map();
+      this.foundWordColorsCount = 0;
       this.hintsRemaining = 3;
       this.score = 0;
       this.timerInterval = null;
@@ -85,6 +110,7 @@
       this.currentCell = null;
       this.selectedCells = [];
       this.customImageData = null;
+      this.enteredPin = '';
 
       this.cacheDom();
       this.bindEvents();
@@ -137,6 +163,16 @@
         leaderboardTableBody: document.getElementById('leaderboard-table-body'),
         btnCloseLeaderboard: document.getElementById('btn-close-leaderboard'),
         btnCloseLeaderboardAction: document.getElementById('btn-close-leaderboard-action'),
+
+        // Modal de PIN (Segurança do Professor)
+        pinModal: document.getElementById('pin-modal'),
+        btnClosePin: document.getElementById('btn-close-pin'),
+        btnPinCancel: document.getElementById('btn-pin-cancel'),
+        pinDisplay: document.getElementById('pin-display'),
+        pinDigitBoxes: document.querySelectorAll('.pin-digit-box'),
+        pinHiddenInput: document.getElementById('pin-hidden-input'),
+        pinErrorMsg: document.getElementById('pin-error-msg'),
+        pinKeypad: document.querySelector('.pin-keypad'),
 
         customModal: document.getElementById('custom-modal'),
         customThemeTitle: document.getElementById('custom-theme-title'),
@@ -211,7 +247,45 @@
       this.dom.btnCloseLeaderboardAction.addEventListener('click', () => this.closeModal(this.dom.leaderboardModal));
       this.dom.leaderboardFilterDiff.addEventListener('change', () => this.renderLeaderboardTable());
 
-      this.dom.btnCustomModal.addEventListener('click', () => this.openModal(this.dom.customModal));
+      this.dom.btnCustomModal.addEventListener('click', () => this.openPinModal());
+
+      if (this.dom.btnClosePin) {
+        this.dom.btnClosePin.addEventListener('click', () => {
+          this.closeModal(this.dom.pinModal);
+          this.resetPin();
+        });
+      }
+      if (this.dom.btnPinCancel) {
+        this.dom.btnPinCancel.addEventListener('click', () => {
+          this.closeModal(this.dom.pinModal);
+          this.resetPin();
+        });
+      }
+      if (this.dom.pinKeypad) {
+        this.dom.pinKeypad.addEventListener('click', (e) => {
+          const btn = e.target.closest('button');
+          if (!btn) return;
+          if (btn.dataset.digit !== undefined) {
+            this.handlePinDigit(btn.dataset.digit);
+          } else if (btn.id === 'btn-pin-backspace') {
+            this.handlePinBackspace();
+          } else if (btn.id === 'btn-pin-clear') {
+            this.handlePinClear();
+          }
+        });
+      }
+      if (this.dom.pinHiddenInput) {
+        this.dom.pinHiddenInput.addEventListener('input', (e) => {
+          const val = e.target.value.replace(/[^0-9]/g, '');
+          if (val.length > 0) {
+            for (let i = 0; i < val.length; i++) {
+              this.handlePinDigit(val[i]);
+            }
+          }
+          e.target.value = '';
+        });
+      }
+
       this.dom.btnCloseCustom.addEventListener('click', () => {
         this.clearCustomImage();
         this.closeModal(this.dom.customModal);
@@ -268,6 +342,24 @@
 
       // Atalhos de Teclado
       window.addEventListener('keydown', (e) => {
+        // Se o modal de PIN de segurança estiver aberto, captura números e controle
+        if (this.dom.pinModal && this.dom.pinModal.classList.contains('open')) {
+          if (e.key >= '0' && e.key <= '9') {
+            e.preventDefault();
+            this.handlePinDigit(e.key);
+            return;
+          } else if (e.key === 'Backspace') {
+            e.preventDefault();
+            this.handlePinBackspace();
+            return;
+          } else if (e.key === 'Escape') {
+            e.preventDefault();
+            this.closeModal(this.dom.pinModal);
+            this.resetPin();
+            return;
+          }
+        }
+
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
         if (e.key === 'h' || e.key === 'H') {
           this.useHint();
@@ -380,6 +472,8 @@
       this.score = 0;
       this.hintsRemaining = 3;
       this.foundWords.clear();
+      this.cellColorsMap.clear();
+      this.foundWordColorsCount = 0;
       this.isPlaying = true;
       this.updateScoreDisplay();
       this.updateHintBadge();
@@ -588,24 +682,48 @@
         this.foundWords.add(matchedWord.clean);
         window.soundEngine.playSuccess();
 
-        // Destaca permanentemente na grade
+        // Atribui uma cor única da paleta para esta palavra encontrada
+        const color = WORD_COLORS[this.foundWordColorsCount % WORD_COLORS.length];
+        this.foundWordColorsCount++;
+
+        // Destaca permanentemente na grade com a cor exclusiva
         this.selectedCells.forEach(c => {
           c.element.classList.add('found');
           c.element.classList.remove('hint');
+
+          const key = `${c.x},${c.y}`;
+          let cellColors = this.cellColorsMap.get(key);
+          if (!cellColors) {
+            cellColors = [];
+            this.cellColorsMap.set(key, cellColors);
+          }
+          if (!cellColors.includes(color)) {
+            cellColors.push(color);
+          }
+
+          this.applyCellColor(c.element, cellColors);
         });
 
-        // Atualiza a Tag na lista
+        // Atualiza a Tag na lista (caso exista)
         const tag = document.getElementById(`tag-${matchedWord.clean}`);
         if (tag) {
           tag.classList.add('found');
           tag.innerHTML = `<span>✓</span> <span>${matchedWord.original}</span>`;
+          tag.style.backgroundColor = color.storyBg || color.bg;
+          tag.style.color = color.storyText || color.text;
+          tag.style.borderColor = color.border;
         }
 
-        // Destaca na Frase da História - FICA EM VERMELHO NO TEXTO!
+        // Destaca na Frase da História com a MESMA cor da palavra encontrada!
         const sentenceHighlights = this.dom.scenarioSentence.querySelectorAll(`.target-word[data-clean="${matchedWord.clean}"]`);
         sentenceHighlights.forEach(el => {
           el.classList.add('found-word');
           el.classList.remove('hint-word');
+          el.style.backgroundColor = color.storyBg || color.bg;
+          el.style.color = color.storyText || color.text;
+          el.style.borderColor = color.border;
+          el.style.borderBottomColor = color.border;
+          el.style.boxShadow = `0 2px 8px ${color.glow}`;
         });
 
         // Pontuação: 100 base + bônus de tamanho e dificuldade
@@ -618,6 +736,47 @@
         if (this.foundWords.size === this.wordsToFind.length) {
           this.handleVictory();
         }
+      }
+    }
+
+    applyCellColor(element, cellColors) {
+      if (!cellColors || cellColors.length === 0) {
+        element.style.backgroundColor = '';
+        element.style.backgroundImage = '';
+        element.style.color = '';
+        element.style.borderColor = '';
+        element.style.borderWidth = '';
+        element.style.boxShadow = '';
+        return;
+      }
+
+      if (cellColors.length === 1) {
+        const c = cellColors[0];
+        element.style.backgroundColor = c.bg;
+        element.style.backgroundImage = 'none';
+        element.style.color = c.text;
+        element.style.borderColor = c.border;
+        element.style.borderWidth = '2px';
+        element.style.boxShadow = `0 2px 5px ${c.glow}`;
+      } else if (cellColors.length === 2) {
+        const c1 = cellColors[0];
+        const c2 = cellColors[1];
+        // Gradiente diagonal dividido entre as duas palavras que se cruzam
+        element.style.backgroundColor = '';
+        element.style.backgroundImage = `linear-gradient(135deg, ${c1.bg} 0%, ${c1.bg} 48%, ${c2.bg} 52%, ${c2.bg} 100%)`;
+        element.style.color = '#0b192c';
+        element.style.borderColor = c2.border;
+        element.style.borderWidth = '2px';
+        element.style.boxShadow = `inset 0 0 0 1.5px ${c1.border}, 0 2px 6px rgba(0, 0, 0, 0.25)`;
+      } else {
+        const step = 100 / cellColors.length;
+        const stops = cellColors.map((c, i) => `${c.bg} ${Math.round(i * step)}%, ${c.bg} ${Math.round((i + 1) * step)}%`).join(', ');
+        element.style.backgroundColor = '';
+        element.style.backgroundImage = `linear-gradient(135deg, ${stops})`;
+        element.style.color = '#0b192c';
+        element.style.borderColor = cellColors[cellColors.length - 1].border;
+        element.style.borderWidth = '2px';
+        element.style.boxShadow = `inset 0 0 0 1.5px ${cellColors[0].border}, 0 2px 6px rgba(0, 0, 0, 0.25)`;
       }
     }
 
@@ -649,6 +808,11 @@
 
         setTimeout(() => {
           cellEl.classList.remove('hint');
+          const key = `${firstCell.x},${firstCell.y}`;
+          const existingColors = this.cellColorsMap.get(key);
+          if (existingColors && existingColors.length > 0) {
+            this.applyCellColor(cellEl, existingColors);
+          }
         }, 5000);
       }
     }
@@ -849,6 +1013,101 @@
 
     closeAllModals() {
       document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+      this.resetPin();
+    }
+
+    // ----------------------------------------------------
+    // Gestão do PIN de Segurança para Criação de Fases
+    // ----------------------------------------------------
+    openPinModal() {
+      this.resetPin();
+      this.openModal(this.dom.pinModal);
+      if (this.dom.pinHiddenInput) {
+        setTimeout(() => {
+          try { this.dom.pinHiddenInput.focus(); } catch (err) {}
+        }, 150);
+      }
+    }
+
+    resetPin() {
+      this.enteredPin = '';
+      if (this.dom.pinHiddenInput) this.dom.pinHiddenInput.value = '';
+      if (this.dom.pinErrorMsg) this.dom.pinErrorMsg.style.display = 'none';
+      this.updatePinDisplay();
+    }
+
+    handlePinDigit(digit) {
+      if (this.enteredPin.length >= 4) return;
+      this.enteredPin += String(digit);
+      if (this.dom.pinErrorMsg) this.dom.pinErrorMsg.style.display = 'none';
+      this.updatePinDisplay();
+      if (window.soundEngine) window.soundEngine.playSelect();
+
+      if (this.enteredPin.length === 4) {
+        this.verifyPin();
+      }
+    }
+
+    handlePinBackspace() {
+      if (this.enteredPin.length > 0) {
+        this.enteredPin = this.enteredPin.slice(0, -1);
+        if (this.dom.pinErrorMsg) this.dom.pinErrorMsg.style.display = 'none';
+        this.updatePinDisplay();
+        if (window.soundEngine) window.soundEngine.playSelect();
+      }
+    }
+
+    handlePinClear() {
+      this.resetPin();
+      if (window.soundEngine) window.soundEngine.playSelect();
+    }
+
+    updatePinDisplay() {
+      const boxes = this.dom.pinDigitBoxes;
+      if (!boxes) return;
+      boxes.forEach((box, i) => {
+        if (i < this.enteredPin.length) {
+          box.textContent = '●';
+          box.classList.add('filled');
+        } else {
+          box.textContent = '';
+          box.classList.remove('filled');
+        }
+        box.classList.remove('error', 'success');
+      });
+    }
+
+    verifyPin() {
+      if (this.enteredPin === ADMIN_PIN) {
+        // PIN 1269 correto!
+        if (this.dom.pinDigitBoxes) {
+          this.dom.pinDigitBoxes.forEach(b => b.classList.add('success'));
+        }
+        if (window.soundEngine) window.soundEngine.playSuccess();
+
+        setTimeout(() => {
+          this.closeModal(this.dom.pinModal);
+          this.resetPin();
+          this.openModal(this.dom.customModal);
+        }, 250);
+      } else {
+        // PIN incorreto!
+        if (this.dom.pinDigitBoxes) {
+          this.dom.pinDigitBoxes.forEach(b => b.classList.add('error'));
+        }
+        if (this.dom.pinErrorMsg) this.dom.pinErrorMsg.style.display = 'block';
+        if (this.dom.pinDisplay) {
+          this.dom.pinDisplay.classList.add('shake');
+          setTimeout(() => {
+            this.dom.pinDisplay.classList.remove('shake');
+          }, 450);
+        }
+        if (window.soundEngine) window.soundEngine.playHint();
+
+        setTimeout(() => {
+          this.resetPin();
+        }, 650);
+      }
     }
   }
 

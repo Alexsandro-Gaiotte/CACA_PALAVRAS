@@ -13,13 +13,13 @@ Avaliamos ambas as opções e **JavaScript (Web/Node.js)** é a melhor escolha t
 
 ## 3. Melhorias e Recursos do Jogo
 1. **Grade Dinâmica Procedural:** A cada nova partida, as palavras são reposicionadas em ângulos e coordenadas aleatórias com preenchimento de letras baseado na frequência do português.
-2. **História Interativa Integrada:** Conforme o aluno encontra cada palavra no caça-palavras, a palavra correspondente na história da edição se destaca em vermelho com animação de celebração.
+2. **História Interativa Integrada & Cores Exclusivas por Palavra:** Cada palavra encontrada ganha uma cor exclusiva e vibrante da paleta (evitando a repetição de uma única cor na grade), facilitando a leitura e busca pelo jogador. A palavra correspondente na história também se destaca com a mesma cor e animação comemorativa, e letras compartilhadas no cruzamento de palavras recebem gradiente bicolor elegante.
 3. **Múltiplos Níveis & Temas:**
    - *Festa na Sala de Aula*
    - *A Hora da Melancia*
    - *O Quadro de Planos*
    - *Brincadeiras no Bairro*
-   - *Criador Personalizado* (Professores e alunos podem cadastrar histórias e palavras próprias)
+   - *Criador Personalizado Protegido por PIN:* Acesso restrito a professores e educadores mediante PIN de 4 dígitos (**1269**), com teclado numérico virtual touch (para telas de 75'/80') e suporte a teclado físico. Permite cadastrar histórias, palavras e imagens personalizadas.
 4. **Níveis de Dificuldade:** Fácil (10x10), Médio (12x12), Difícil (14x14).
 5. **Sistema de Dicas:** Destaca a primeira letra de uma palavra ainda não encontrada.
 6. **Efeitos Visuais e Sonoros:** Confetes na vitória, cronômetro, pontuação, tabela de classificação e áudio sintetizado.
