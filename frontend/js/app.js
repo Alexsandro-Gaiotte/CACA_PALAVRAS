@@ -135,6 +135,10 @@
         btnCustomModal: document.getElementById('btn-custom-modal'),
         btnBackMenu: document.getElementById('btn-back-menu'),
         btnFullscreen: document.getElementById('btn-fullscreen'),
+        gameNavbar: document.getElementById('game-navbar'),
+        btnToggleNavbar: document.getElementById('btn-toggle-navbar'),
+        toggleTabIcon: document.getElementById('toggle-tab-icon'),
+        toggleTabLabel: document.getElementById('toggle-tab-label'),
 
         boardThemeTitle: document.getElementById('board-theme-title'),
         boardDifficultyBadge: document.getElementById('board-difficulty-badge'),
@@ -208,6 +212,18 @@
         document.addEventListener('fullscreenchange', () => this.updateFullscreenButton());
         document.addEventListener('webkitfullscreenchange', () => this.updateFullscreenButton());
       }
+
+      // Alternar visualização da Header (Esconder / Puxar)
+      if (this.dom.btnToggleNavbar) {
+        this.dom.btnToggleNavbar.addEventListener("click", (e) => {
+          e.preventDefault();
+          this.toggleNavbar();
+        });
+      }
+
+      window.addEventListener("resize", () => {
+        this.updateNavbarHeightVar();
+      });
 
       this.dom.btnBackMenu.addEventListener('click', () => {
         this.stopTimer();
@@ -366,6 +382,8 @@
         } else if (e.key === 'm' || e.key === 'M') {
           const muted = window.soundEngine.toggleMute();
           this.updateAudioIcon(muted);
+        } else if (e.key === 'b' || e.key === 'B') {
+          this.toggleNavbar();
         } else if (e.key === 'Escape') {
           this.closeAllModals();
         }
@@ -510,6 +528,53 @@
       this.renderWordsList();
       this.updateProgressCounter();
       this.startTimer();
+      this.updateNavbarHeightVar();
+    }
+
+    updateNavbarHeightVar() {
+      if (this.dom.gameNavbar) {
+        const h = this.dom.gameNavbar.offsetHeight;
+        if (h > 0) {
+          document.documentElement.style.setProperty('--navbar-height', `${h}px`);
+        }
+      }
+    }
+
+    toggleNavbar(forceState) {
+      if (!this.dom.gameNavbar) return;
+      const now = Date.now();
+      if (typeof forceState !== 'boolean' && this._lastToggleTime && (now - this._lastToggleTime < 250)) {
+        return;
+      }
+      this._lastToggleTime = now;
+      this.updateNavbarHeightVar();
+
+      let isCollapsed;
+      if (typeof forceState === 'boolean') {
+        if (forceState) {
+          this.dom.gameNavbar.classList.add('collapsed');
+        } else {
+          this.dom.gameNavbar.classList.remove('collapsed');
+        }
+        isCollapsed = forceState;
+      } else {
+        isCollapsed = this.dom.gameNavbar.classList.toggle('collapsed');
+      }
+
+      if (this.dom.toggleTabIcon) {
+        this.dom.toggleTabIcon.textContent = isCollapsed ? '▼' : '▲';
+      }
+      
+      if (this.dom.btnToggleNavbar) {
+        this.dom.btnToggleNavbar.setAttribute('aria-expanded', !isCollapsed);
+        this.dom.btnToggleNavbar.title = isCollapsed 
+          ? 'Puxar barra superior para baixo (Atalho: B)' 
+          : 'Esconder barra superior (Atalho: B)';
+      }
+
+      if (window.soundEngine && window.soundEngine.playSelect) {
+        window.soundEngine.playSelect();
+      }
     }
 
     toggleFullscreen() {

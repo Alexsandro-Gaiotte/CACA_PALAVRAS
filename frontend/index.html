@@ -71,7 +71,7 @@
   <div id="game-container" class="game-container">
     
     <!-- Barra Superior -->
-    <header class="game-navbar">
+    <header class="game-navbar" id="game-navbar">
       <div class="nav-brand">
         <img src="assets/logos/saquarema-logo.png" alt="Saquarema" class="nav-logo-saquarema">
       </div>
@@ -114,6 +114,11 @@
           🏠 Menu
         </button>
       </div>
+
+      <!-- Botao / Alca ligada na Header para esconder e puxar -->
+      <button id="btn-toggle-navbar" class="navbar-toggle-tab" type="button" onclick="if(window.game && window.game.toggleNavbar) window.game.toggleNavbar();" aria-expanded="true" aria-controls="game-navbar" aria-label="Esconder ou puxar barra superior" title="Esconder barra superior (ou puxar de volta)">
+        <span class="toggle-tab-icon" id="toggle-tab-icon">▲</span>
+      </button>
     </header>
 
     <!-- Área Principal do Jogo -->
